@@ -10,3 +10,13 @@ c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoin
 c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csproj.GenerateResource.Cache
 c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
 c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.config
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.pdb
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csprojResolveAssemblyReference.cache
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.LoginPage.resources
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Mainpage.resources
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Properties.Resources.resources
+C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csproj.GenerateResource.Cache
