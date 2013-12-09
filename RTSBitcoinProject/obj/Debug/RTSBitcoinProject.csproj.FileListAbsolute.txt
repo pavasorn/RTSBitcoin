@@ -23,3 +23,6 @@ C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProj
 C:\Users\Th3B0Y\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.config
 C:\Users\Th3B0Y\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
 C:\Users\Th3B0Y\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
+C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.config
+C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
+C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
