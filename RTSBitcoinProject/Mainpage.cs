@@ -24,7 +24,7 @@ namespace RTSBitcoinProject
 
         private void buyatButton_Click(object sender, EventArgs e)
         {
-            ///// test changes nnnnnnnnn
+            // jimmy choo
         }
     }
 }
