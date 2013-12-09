@@ -1,0 +1,12 @@
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.config
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.pdb
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.CodeAnalysisLog.xml
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.lastcodeanalysissucceeded
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csprojResolveAssemblyReference.cache
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.LoginPage.resources
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Mainpage.resources
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Properties.Resources.resources
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csproj.GenerateResource.Cache
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
+c:\users\bent\documents\visual studio 2013\Projects\RTSBitcoinProject\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
