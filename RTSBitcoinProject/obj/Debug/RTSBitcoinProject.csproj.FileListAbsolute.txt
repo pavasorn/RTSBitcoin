@@ -20,3 +20,6 @@ C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProj
 C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Mainpage.resources
 C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Properties.Resources.resources
 C:\Users\Bent\Source\Repos\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csproj.GenerateResource.Cache
+C:\Users\Th3B0Y\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.config
+C:\Users\Th3B0Y\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
+C:\Users\Th3B0Y\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
