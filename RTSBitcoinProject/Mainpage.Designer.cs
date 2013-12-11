@@ -59,6 +59,7 @@
             this.UpdatePricesTimer = new System.Windows.Forms.Timer(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.balanceLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buynowButton
@@ -202,7 +203,7 @@
             // highpriceLabel
             // 
             this.highpriceLabel.AutoSize = true;
-            this.highpriceLabel.Location = new System.Drawing.Point(28, 176);
+            this.highpriceLabel.Location = new System.Drawing.Point(62, 176);
             this.highpriceLabel.Name = "highpriceLabel";
             this.highpriceLabel.Size = new System.Drawing.Size(88, 13);
             this.highpriceLabel.TabIndex = 25;
@@ -245,9 +246,9 @@
             this.price,
             this.currency,
             this.status});
-            this.orderListview.Location = new System.Drawing.Point(23, 230);
+            this.orderListview.Location = new System.Drawing.Point(23, 238);
             this.orderListview.Name = "orderListview";
-            this.orderListview.Size = new System.Drawing.Size(685, 141);
+            this.orderListview.Size = new System.Drawing.Size(685, 162);
             this.orderListview.TabIndex = 42;
             this.orderListview.UseCompatibleStateImageBehavior = false;
             this.orderListview.View = System.Windows.Forms.View.Details;
@@ -299,18 +300,30 @@
             // balanceLabel
             // 
             this.balanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLabel.Location = new System.Drawing.Point(591, 9);
+            this.balanceLabel.Location = new System.Drawing.Point(591, 2);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(99, 25);
             this.balanceLabel.TabIndex = 44;
             this.balanceLabel.Text = "<balance>";
             this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.SystemColors.Control;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(22, 212);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 20);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "Pending transactions";
+            // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 412);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.orderListview);
@@ -378,6 +391,7 @@
         private System.Windows.Forms.Timer UpdatePricesTimer;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balanceLabel;
+        private System.Windows.Forms.Label label9;
 
     }
 }
