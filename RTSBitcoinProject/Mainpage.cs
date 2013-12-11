@@ -26,5 +26,20 @@ namespace RTSBitcoinProject
         {
             // jimmy choo
         }
+
+        private void orderListview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void orderListview_Click(object sender, EventArgs e)
+        {
+            ListViewItem item1 = new ListViewItem("Something");
+            item1.SubItems.Add("SubItem1a");
+            item1.SubItems.Add("SubItem1b");
+            item1.SubItems.Add("SubItem1c");
+            item1.SubItems.Add("SubItem1d");
+            item1.SubItems.Add("SubItem1e");
+            orderListview.Items.Add(item1);
+        }
     }
 }

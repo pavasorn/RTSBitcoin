@@ -247,6 +247,7 @@
             this.orderListview.TabIndex = 42;
             this.orderListview.UseCompatibleStateImageBehavior = false;
             this.orderListview.View = System.Windows.Forms.View.Details;
+            this.orderListview.SelectedIndexChanged += new System.EventHandler(this.orderListview_SelectedIndexChanged);
             // 
             // orderTime
             // 
