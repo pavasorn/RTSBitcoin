@@ -17,22 +17,26 @@ namespace RTSBitcoinProject
 
         private void Mainpage_Load(object sender, EventArgs e)
         {
-            AddCurrencies();
-            UpdateBalance();
+
         }
 
         private void Mainpage_Shown(object sender, EventArgs e)
         {
-            UpdatePrices();
+            UpdatePricesTimer.Enabled = true;
+            AddCurrencies();
+            UpdatePrices(); 
+            UpdateBalance();
         }
 
-        private void UpdateBalance()
+        public bool UpdateBalance()
         {
-            // Key, Secret
-            var btceApi = new BtceApi("KR3Y5845-RJ9P21RY-C8AFMBDV-DLTSDRBM-GKN022V9", "79b2562155534c1842b85725358fc8ac3adbc7ef0952c0e9a772ced1f0a93369");
-            var info = btceApi.GetInfo();
-            balanceLabel.Text = "€" + info.Funds.Eur.ToString(_culture);
+            var btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
+            var userInfo = btceApi.GetInfo();
 
+            if (btceApi.Equals(null)) return false;
+
+            balanceLabel.Text = "€" + userInfo.Funds.Eur.ToString(_culture);
+            return true;
         }
 
         private void UpdatePrices()
@@ -49,7 +53,7 @@ namespace RTSBitcoinProject
 
         private void AddCurrencies()
         {
-            foreach (object item in Enum.GetValues(typeof (BtcePair)))
+            foreach (var item in Enum.GetValues(typeof (BtcePair)))
             {
                 currencyComboBox.Items.Add(item);
             }

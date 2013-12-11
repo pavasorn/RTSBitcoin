@@ -283,7 +283,6 @@
             // 
             // UpdatePricesTimer
             // 
-            this.UpdatePricesTimer.Enabled = true;
             this.UpdatePricesTimer.Interval = 5000;
             this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
