@@ -8,7 +8,8 @@ namespace RTSBitcoinProject
     public partial class Mainpage : Form
     {
         readonly CultureInfo _culture = CultureInfo.InvariantCulture;
-       
+        private Ticker _ticker = null;
+
         public Mainpage()
         {
             InitializeComponent();
@@ -35,20 +36,20 @@ namespace RTSBitcoinProject
 
             if (btceApi.Equals(null)) return false;
 
-            balanceLabel.Text = "€" + userInfo.Funds.Eur.ToString(_culture);
+            balanceLabel.Text = userInfo.Funds.Ltc.ToString(_culture) + "LTC";
             return true;
         }
 
         private void UpdatePrices()
         {
-            var ticker = BtceApi.GetTicker(BtcePairHelper.FromString(currencyComboBox.SelectedItem.ToString()));
+            _ticker = BtceApi.GetTicker(BtcePairHelper.FromString(currencyComboBox.SelectedItem.ToString()));
 
-            highpriceLabel.Text = ticker.High.ToString(_culture);
-            avgpriceLabel.Text = ticker.Average.ToString(_culture);
-            lowpriceLabel.Text = ticker.Low.ToString(_culture);
+            highpriceLabel.Text = _ticker.High.ToString(_culture);
+            avgpriceLabel.Text = _ticker.Average.ToString(_culture);
+            lowpriceLabel.Text = _ticker.Low.ToString(_culture);
 
-            buypriceLabel.Text = ticker.Buy.ToString(_culture);
-            sellpriceLabel.Text = ticker.Sell.ToString(_culture);
+            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
+            sellpriceLabel.Text = _ticker.Sell.ToString(_culture);
         }
 
         private void AddCurrencies()
@@ -90,6 +91,11 @@ namespace RTSBitcoinProject
         private void currencyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdatePrices();
+        }
+
+        private void Mainpage_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

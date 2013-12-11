@@ -201,6 +201,7 @@
             // 
             // highpriceLabel
             // 
+            this.highpriceLabel.AutoSize = true;
             this.highpriceLabel.Location = new System.Drawing.Point(28, 176);
             this.highpriceLabel.Name = "highpriceLabel";
             this.highpriceLabel.Size = new System.Drawing.Size(88, 13);
@@ -283,7 +284,7 @@
             // 
             // UpdatePricesTimer
             // 
-            this.UpdatePricesTimer.Interval = 5000;
+            this.UpdatePricesTimer.Interval = 1000;
             this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label6
@@ -302,7 +303,7 @@
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(99, 25);
             this.balanceLabel.TabIndex = 44;
-            this.balanceLabel.Text = "<balanceLabel>";
+            this.balanceLabel.Text = "<balance>";
             this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Mainpage
@@ -337,6 +338,7 @@
             this.MinimumSize = new System.Drawing.Size(750, 450);
             this.Name = "Mainpage";
             this.Text = "Mainpage";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);
             this.Load += new System.EventHandler(this.Mainpage_Load);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
             this.ResumeLayout(false);
