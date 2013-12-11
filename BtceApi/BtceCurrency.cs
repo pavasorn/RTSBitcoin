@@ -18,8 +18,8 @@ namespace BtcE
 	class BtceCurrencyHelper
 	{
 		public static BtceCurrency FromString(string s) {
-			BtceCurrency ret = BtceCurrency.Unknown;
-			Enum.TryParse<BtceCurrency>(s, out ret);
+			BtceCurrency ret;
+			Enum.TryParse(s, out ret);
 			return ret;
 		}
 		public static string ToString(BtceCurrency v) {

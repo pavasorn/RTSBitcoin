@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buynowButton = new System.Windows.Forms.Button();
             this.volumeTextbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,6 +56,7 @@
             this.price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.currency = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.UpdatePricesTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // buynowButton
@@ -65,7 +67,6 @@
             this.buynowButton.TabIndex = 41;
             this.buynowButton.Text = "Buy Now";
             this.buynowButton.UseVisualStyleBackColor = true;
-            this.buynowButton.Click += new System.EventHandler(this.buynowButton_Click);
             // 
             // volumeTextbox
             // 
@@ -94,11 +95,14 @@
             // 
             // currencyComboBox
             // 
+            this.currencyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.currencyComboBox.FormattingEnabled = true;
             this.currencyComboBox.Location = new System.Drawing.Point(86, 40);
             this.currencyComboBox.Name = "currencyComboBox";
-            this.currencyComboBox.Size = new System.Drawing.Size(87, 21);
+            this.currencyComboBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.currencyComboBox.Size = new System.Drawing.Size(71, 21);
             this.currencyComboBox.TabIndex = 37;
+            this.currencyComboBox.SelectedIndexChanged += new System.EventHandler(this.currencyComboBox_SelectedIndexChanged);
             // 
             // sellatTextBox
             // 
@@ -122,6 +126,7 @@
             this.sellatButton.TabIndex = 34;
             this.sellatButton.Text = "Sell at:";
             this.sellatButton.UseVisualStyleBackColor = true;
+            this.sellatButton.Click += new System.EventHandler(this.sellatButton_Click);
             // 
             // buyatButton
             // 
@@ -204,6 +209,7 @@
             this.highpriceLabel.Size = new System.Drawing.Size(88, 13);
             this.highpriceLabel.TabIndex = 25;
             this.highpriceLabel.Text = "<highpriceLabel>";
+            this.highpriceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -247,7 +253,6 @@
             this.orderListview.TabIndex = 42;
             this.orderListview.UseCompatibleStateImageBehavior = false;
             this.orderListview.View = System.Windows.Forms.View.Details;
-            this.orderListview.SelectedIndexChanged += new System.EventHandler(this.orderListview_SelectedIndexChanged);
             // 
             // orderTime
             // 
@@ -279,6 +284,12 @@
             this.status.Text = "status";
             this.status.Width = 114;
             // 
+            // UpdatePricesTimer
+            // 
+            this.UpdatePricesTimer.Enabled = true;
+            this.UpdatePricesTimer.Interval = 5000;
+            this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,6 +320,8 @@
             this.MinimumSize = new System.Drawing.Size(750, 450);
             this.Name = "Mainpage";
             this.Text = "Mainpage";
+            this.Load += new System.EventHandler(this.Mainpage_Load);
+            this.Shown += new System.EventHandler(this.Mainpage_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,6 +356,7 @@
         private System.Windows.Forms.ColumnHeader price;
         private System.Windows.Forms.ColumnHeader currency;
         private System.Windows.Forms.ColumnHeader status;
+        private System.Windows.Forms.Timer UpdatePricesTimer;
 
     }
 }

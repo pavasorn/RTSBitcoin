@@ -24,7 +24,7 @@ namespace BtcE
         {
             var request = WebRequest.Create(url);
             request.Proxy = WebRequest.DefaultWebProxy;
-            request.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+            request.Proxy.Credentials = CredentialCache.DefaultCredentials;
             if (request == null)
                 throw new Exception("Non HTTP WebRequest");
             return new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
