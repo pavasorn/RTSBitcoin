@@ -4,8 +4,6 @@
  * 2012
  */
 
-using BtcE.Utils;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,14 +13,15 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace BtcE
 {
-    class WebApi
+    internal class WebApi
     {
         public static string Query(string url)
         {
-            var request = WebRequest.Create(url);
+            WebRequest request = WebRequest.Create(url);
             request.Proxy = WebRequest.DefaultWebProxy;
             request.Proxy.Credentials = CredentialCache.DefaultCredentials;
             if (request == null)
@@ -33,22 +32,24 @@ namespace BtcE
 
     public class BtceApi
     {
-        string key;
-        HMACSHA512 hashMaker;
-        UInt32 nonce;
+        private readonly HMACSHA512 _hashMaker;
+        private readonly string _key;
+        private UInt32 _nonce;
+
         public BtceApi(string key, string secret)
         {
-            this.key = key;
-            hashMaker = new HMACSHA512(Encoding.ASCII.GetBytes(secret));
-            nonce = UnixTime.Now;
+            _key = key;
+            _hashMaker = new HMACSHA512(Encoding.ASCII.GetBytes(secret));
+            _nonce = UnixTime.Now;
         }
+
         public UserInfo GetInfo()
         {
-            var resultStr = Query(new Dictionary<string, string>()
+            string resultStr = Query(new Dictionary<string, string>
             {
-                { "method", "getInfo" }
+                {"method", "getInfo"}
             });
-            var result = JObject.Parse(resultStr);
+            JObject result = JObject.Parse(resultStr);
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return UserInfo.ReadFromJObject(result["return"] as JObject);
@@ -64,9 +65,9 @@ namespace BtcE
             DateTime? end = null
             )
         {
-            var args = new Dictionary<string, string>()
+            var args = new Dictionary<string, string>
             {
-                { "method", "TransHistory" }
+                {"method", "TransHistory"}
             };
 
             if (from != null) args.Add("from", from.Value.ToString());
@@ -76,7 +77,7 @@ namespace BtcE
             if (orderAsc != null) args.Add("order", orderAsc.Value ? "ASC" : "DESC");
             if (since != null) args.Add("since", UnixTime.GetFromDateTime(since.Value).ToString());
             if (end != null) args.Add("end", UnixTime.GetFromDateTime(end.Value).ToString());
-            var result = JObject.Parse(Query(args));
+            JObject result = JObject.Parse(Query(args));
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return TransHistory.ReadFromJObject(result["return"] as JObject);
@@ -92,9 +93,9 @@ namespace BtcE
             DateTime? end = null
             )
         {
-            var args = new Dictionary<string, string>()
+            var args = new Dictionary<string, string>
             {
-                { "method", "TradeHistory" }
+                {"method", "TradeHistory"}
             };
 
             if (from != null) args.Add("from", from.Value.ToString());
@@ -105,7 +106,7 @@ namespace BtcE
             if (since != null) args.Add("since", UnixTime.GetFromDateTime(since.Value).ToString());
             if (end != null) args.Add("end", UnixTime.GetFromDateTime(end.Value).ToString());
 
-            var result = JObject.Parse(Query(args));
+            JObject result = JObject.Parse(Query(args));
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return TradeHistory.ReadFromJObject(result["return"] as JObject);
@@ -123,9 +124,9 @@ namespace BtcE
             bool? active = null
             )
         {
-            var args = new Dictionary<string, string>()
+            var args = new Dictionary<string, string>
             {
-                { "method", "OrderList" }
+                {"method", "OrderList"}
             };
 
             if (from != null) args.Add("from", from.Value.ToString());
@@ -137,7 +138,7 @@ namespace BtcE
             if (end != null) args.Add("end", UnixTime.GetFromDateTime(end.Value).ToString());
             if (pair != null) args.Add("pair", BtcePairHelper.ToString(pair.Value));
             if (active != null) args.Add("active", active.Value ? "1" : "0");
-            var result = JObject.Parse(Query(args));
+            JObject result = JObject.Parse(Query(args));
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return OrderList.ReadFromJObject(result["return"] as JObject);
@@ -145,15 +146,15 @@ namespace BtcE
 
         public TradeAnswer Trade(BtcePair pair, TradeType type, decimal rate, decimal amount)
         {
-            var args = new Dictionary<string, string>()
+            var args = new Dictionary<string, string>
             {
-                { "method", "Trade" },
-                { "pair", BtcePairHelper.ToString(pair) },
-                { "type", TradeTypeHelper.ToString(type) },
-                { "rate", DecimalToString(rate) },
-                { "amount", DecimalToString(amount) }
+                {"method", "Trade"},
+                {"pair", BtcePairHelper.ToString(pair)},
+                {"type", TradeTypeHelper.ToString(type)},
+                {"rate", DecimalToString(rate)},
+                {"amount", DecimalToString(amount)}
             };
-            var result = JObject.Parse(Query(args));
+            JObject result = JObject.Parse(Query(args));
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return TradeAnswer.ReadFromJObject(result["return"] as JObject);
@@ -161,23 +162,23 @@ namespace BtcE
 
         public CancelOrderAnswer CancelOrder(int orderId)
         {
-            var args = new Dictionary<string, string>()
+            var args = new Dictionary<string, string>
             {
-                { "method", "CancelOrder" },
-                { "order_id", orderId.ToString() }
+                {"method", "CancelOrder"},
+                {"order_id", orderId.ToString()}
             };
-            var result = JObject.Parse(Query(args));
+            JObject result = JObject.Parse(Query(args));
             if (result.Value<int>("success") == 0)
                 throw new Exception(result.Value<string>("error"));
             return CancelOrderAnswer.ReadFromJObject(result["return"] as JObject);
         }
 
-        string Query(Dictionary<string, string> args)
+        private string Query(Dictionary<string, string> args)
         {
             args.Add("nonce", GetNonce().ToString());
 
-            var dataStr = BuildPostData(args);
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            string dataStr = BuildPostData(args);
+            byte[] data = Encoding.ASCII.GetBytes(dataStr);
 
             var request = WebRequest.Create(new Uri("https://btc-e.com/tapi")) as HttpWebRequest;
             if (request == null)
@@ -188,20 +189,22 @@ namespace BtcE
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = data.Length;
 
-            request.Headers.Add("Key", key);
-            request.Headers.Add("Sign", ByteArrayToString(hashMaker.ComputeHash(data)).ToLower());
-            var reqStream = request.GetRequestStream();
+            request.Headers.Add("Key", _key);
+            request.Headers.Add("Sign", ByteArrayToString(_hashMaker.ComputeHash(data)).ToLower());
+            Stream reqStream = request.GetRequestStream();
             reqStream.Write(data, 0, data.Length);
             reqStream.Close();
             return new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();
         }
-        static string ByteArrayToString(byte[] ba)
+
+        private static string ByteArrayToString(byte[] ba)
         {
             return BitConverter.ToString(ba).Replace("-", "");
         }
-        static string BuildPostData(Dictionary<string, string> d)
+
+        private static string BuildPostData(Dictionary<string, string> d)
         {
-            StringBuilder s = new StringBuilder();
+            var s = new StringBuilder();
             foreach (var item in d)
             {
                 s.AppendFormat("{0}={1}", item.Key, HttpUtility.UrlEncode(item.Value));
@@ -211,29 +214,34 @@ namespace BtcE
             return s.ToString();
         }
 
-        UInt32 GetNonce()
+        private UInt32 GetNonce()
         {
-            return nonce++;
+            return _nonce++;
         }
-        static string DecimalToString(decimal d)
+
+        private static string DecimalToString(decimal d)
         {
             return d.ToString(CultureInfo.InvariantCulture);
         }
+
         public static Depth GetDepth(BtcePair pair)
         {
             string queryStr = string.Format("https://btc-e.com/api/2/{0}/depth", BtcePairHelper.ToString(pair));
             return Depth.ReadFromJObject(JObject.Parse(WebApi.Query(queryStr)));
         }
+
         public static Ticker GetTicker(BtcePair pair)
         {
             string queryStr = string.Format("https://btc-e.com/api/2/{0}/ticker", BtcePairHelper.ToString(pair));
             return Ticker.ReadFromJObject(JObject.Parse(WebApi.Query(queryStr))["ticker"] as JObject);
         }
+
         public static List<TradeInfo> GetTrades(BtcePair pair)
         {
             string queryStr = string.Format("https://btc-e.com/api/2/{0}/trades", BtcePairHelper.ToString(pair));
             return JArray.Parse(WebApi.Query(queryStr)).OfType<JObject>().Select(TradeInfo.ReadFromJObject).ToList();
         }
+
         public static decimal GetFee(BtcePair pair)
         {
             string queryStr = string.Format("https://btc-e.com/api/2/{0}/fee", BtcePairHelper.ToString(pair));
@@ -243,15 +251,15 @@ namespace BtcE
 
     public class BtceApiV3
     {
-        private static string MakePairListString(BtcePair[] pairlist)
+        private static string MakePairListString(IEnumerable<BtcePair> pairlist)
         {
-            return string.Join("-", pairlist.Select(x => BtcePairHelper.ToString(x)).ToArray());
+            return string.Join("-", pairlist.Select(BtcePairHelper.ToString).ToArray());
         }
 
         private static string Query(string method, BtcePair[] pairlist, Dictionary<string, string> args = null)
         {
-            var pairliststr = MakePairListString(pairlist);
-            StringBuilder sb = new StringBuilder();
+            string pairliststr = MakePairListString(pairlist);
+            var sb = new StringBuilder();
             sb.Append("https://btc-e.com/api/3/");
             sb.Append(method);
             sb.Append("/");
@@ -259,16 +267,20 @@ namespace BtcE
             if (args != null && args.Count > 0)
             {
                 sb.Append("?");
-                var arr = args.Select(x => string.Format("{0}={1}", HttpUtility.UrlEncode(x.Key), HttpUtility.UrlEncode(x.Value))).ToArray();
+                string[] arr =
+                    args.Select(
+                        x => string.Format("{0}={1}", HttpUtility.UrlEncode(x.Key), HttpUtility.UrlEncode(x.Value)))
+                        .ToArray();
                 sb.Append(string.Join("&", arr));
             }
-            var queryStr = sb.ToString();
+            string queryStr = sb.ToString();
             return WebApi.Query(queryStr);
         }
 
-        private static string QueryIgnoreInvalid(string method, BtcePair[] pairlist, Dictionary<string, string> args = null)
+        private static string QueryIgnoreInvalid(string method, BtcePair[] pairlist,
+            Dictionary<string, string> args = null)
         {
-            var newargs = new Dictionary<string,string>() { {"ignore_invalid", "1"} };
+            var newargs = new Dictionary<string, string> {{"ignore_invalid", "1"}};
             if (args != null)
                 newargs.Concat(args);
             return Query(method, pairlist, newargs);
@@ -276,41 +288,45 @@ namespace BtcE
 
         private static Dictionary<BtcePair, T> ReadPairDict<T>(JObject o, Func<JContainer, T> valueReader)
         {
-            return o.OfType<JProperty>().Select(x => new KeyValuePair<BtcePair, T>(BtcePairHelper.FromString(x.Name), valueReader(x.Value as JContainer))).ToDictionary(x => x.Key, x => x.Value);
+            return
+                o.OfType<JProperty>()
+                    .Select(
+                        x =>
+                            new KeyValuePair<BtcePair, T>(BtcePairHelper.FromString(x.Name),
+                                valueReader(x.Value as JContainer)))
+                    .ToDictionary(x => x.Key, x => x.Value);
         }
 
-        private static Dictionary<BtcePair, T> MakeRequest<T>(string method, BtcePair[] pairlist, Func<JContainer, T> valueReader, Dictionary<string, string> args = null, bool ignoreInvalid = true)
+        private static Dictionary<BtcePair, T> MakeRequest<T>(string method, BtcePair[] pairlist,
+            Func<JContainer, T> valueReader, Dictionary<string, string> args = null, bool ignoreInvalid = true)
         {
-            string queryresult;
-            if (ignoreInvalid)
-                queryresult = QueryIgnoreInvalid(method, pairlist, args);
-            else
-                queryresult = Query(method, pairlist, args);
-            var resobj = JObject.Parse(queryresult);
+            string queryresult = ignoreInvalid ? QueryIgnoreInvalid(method, pairlist, args) : Query(method, pairlist, args);
+            JObject resobj = JObject.Parse(queryresult);
 
             if (resobj["success"] != null && resobj.Value<int>("success") == 0)
                 throw new Exception(resobj.Value<string>("error"));
 
-            var r = ReadPairDict<T>(resobj, valueReader);
+            Dictionary<BtcePair, T> r = ReadPairDict(resobj, valueReader);
             return r;
         }
 
         public static Dictionary<BtcePair, Depth> GetDepth(BtcePair[] pairlist, int limit = 150)
         {
-            return MakeRequest<Depth>("depth", pairlist, new Func<JContainer, Depth>(x => Depth.ReadFromJObject(x as JObject)), new Dictionary<string, string>() { { "limit", limit.ToString() } }, true);
+            return MakeRequest("depth", pairlist, x => Depth.ReadFromJObject(x as JObject),
+                new Dictionary<string, string> {{"limit", limit.ToString()}});
         }
 
         public static Dictionary<BtcePair, Ticker> GetTicker(BtcePair[] pairlist)
         {
-            return MakeRequest<Ticker>("ticker", pairlist, x => Ticker.ReadFromJObject(x as JObject), null, true);
+            return MakeRequest("ticker", pairlist, x => Ticker.ReadFromJObject(x as JObject));
         }
 
         public static Dictionary<BtcePair, List<TradeInfoV3>> GetTrades(BtcePair[] pairlist, int limit = 150)
         {
-            Func<JContainer, List<TradeInfoV3>> tradeInfoListReader = (x => x.OfType<JObject>().Select(TradeInfoV3.ReadFromJObject).ToList());
-            return MakeRequest<List<TradeInfoV3>>("trades", pairlist, tradeInfoListReader, new Dictionary<string, string>() { { "limit", limit.ToString() } }, true);
+            Func<JContainer, List<TradeInfoV3>> tradeInfoListReader =
+                (x => x.OfType<JObject>().Select(TradeInfoV3.ReadFromJObject).ToList());
+            return MakeRequest("trades", pairlist, tradeInfoListReader,
+                new Dictionary<string, string> {{"limit", limit.ToString()}});
         }
-
-
     }
 }

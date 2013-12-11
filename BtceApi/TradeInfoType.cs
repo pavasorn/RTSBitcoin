@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace BtcE
 {
     public enum TradeInfoType
@@ -6,6 +7,7 @@ namespace BtcE
         Ask,
         Bid
     }
+
     public class TradeInfoTypeHelper
     {
         public static TradeInfoType FromString(string s)

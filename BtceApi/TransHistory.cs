@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace BtcE
@@ -19,7 +18,7 @@ namespace BtcE
         {
             if (o == null)
                 return null;
-			return new Transaction()
+            return new Transaction
             {
                 Type = o.Value<int>("type"),
                 Amount = o.Value<decimal>("amount"),
@@ -31,13 +30,18 @@ namespace BtcE
         }
     }
 
-    public class TransHistory {
+    public class TransHistory
+    {
         public Dictionary<int, Transaction> List { get; private set; }
+
         public static TransHistory ReadFromJObject(JObject o)
         {
-			return new TransHistory() {
-				List = o.OfType<KeyValuePair<string,JToken>>().ToDictionary(a=>int.Parse(a.Key), a=>Transaction.ReadFromJObject(a.Value as JObject))
-			};
+            return new TransHistory
+            {
+                List =
+                    o.OfType<KeyValuePair<string, JToken>>()
+                        .ToDictionary(a => int.Parse(a.Key), a => Transaction.ReadFromJObject(a.Value as JObject))
+            };
         }
     }
 }

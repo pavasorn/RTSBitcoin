@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace RTSBitcoinProject
 {
-    static class Program
+    internal static class Program
     {
         /// The main entry point for the application.
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

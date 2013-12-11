@@ -57,6 +57,8 @@
             this.currency = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UpdatePricesTimer = new System.Windows.Forms.Timer(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.balanceLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buynowButton
@@ -149,8 +151,7 @@
             // 
             // sellpriceLabel
             // 
-            this.sellpriceLabel.AutoSize = true;
-            this.sellpriceLabel.Location = new System.Drawing.Point(625, 177);
+            this.sellpriceLabel.Location = new System.Drawing.Point(645, 176);
             this.sellpriceLabel.Name = "sellpriceLabel";
             this.sellpriceLabel.Size = new System.Drawing.Size(83, 13);
             this.sellpriceLabel.TabIndex = 31;
@@ -158,8 +159,7 @@
             // 
             // buypriceLabel
             // 
-            this.buypriceLabel.AutoSize = true;
-            this.buypriceLabel.Location = new System.Drawing.Point(493, 177);
+            this.buypriceLabel.Location = new System.Drawing.Point(506, 176);
             this.buypriceLabel.Name = "buypriceLabel";
             this.buypriceLabel.Size = new System.Drawing.Size(85, 13);
             this.buypriceLabel.TabIndex = 30;
@@ -185,8 +185,7 @@
             // 
             // avgpriceLabel
             // 
-            this.avgpriceLabel.AutoSize = true;
-            this.avgpriceLabel.Location = new System.Drawing.Point(184, 177);
+            this.avgpriceLabel.Location = new System.Drawing.Point(195, 176);
             this.avgpriceLabel.Name = "avgpriceLabel";
             this.avgpriceLabel.Size = new System.Drawing.Size(86, 13);
             this.avgpriceLabel.TabIndex = 27;
@@ -194,17 +193,15 @@
             // 
             // lowpriceLabel
             // 
-            this.lowpriceLabel.AutoSize = true;
-            this.lowpriceLabel.Location = new System.Drawing.Point(346, 176);
+            this.lowpriceLabel.Location = new System.Drawing.Point(339, 176);
             this.lowpriceLabel.Name = "lowpriceLabel";
-            this.lowpriceLabel.Size = new System.Drawing.Size(84, 13);
+            this.lowpriceLabel.Size = new System.Drawing.Size(89, 13);
             this.lowpriceLabel.TabIndex = 26;
             this.lowpriceLabel.Text = "<lowpriceLabel>";
             // 
             // highpriceLabel
             // 
-            this.highpriceLabel.AutoSize = true;
-            this.highpriceLabel.Location = new System.Drawing.Point(20, 176);
+            this.highpriceLabel.Location = new System.Drawing.Point(28, 176);
             this.highpriceLabel.Name = "highpriceLabel";
             this.highpriceLabel.Size = new System.Drawing.Size(88, 13);
             this.highpriceLabel.TabIndex = 25;
@@ -223,7 +220,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(362, 144);
+            this.label2.Location = new System.Drawing.Point(341, 144);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 23;
@@ -232,7 +229,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 144);
+            this.label1.Location = new System.Drawing.Point(62, 144);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 22;
@@ -290,11 +287,32 @@
             this.UpdatePricesTimer.Interval = 5000;
             this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(506, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Balance:";
+            // 
+            // balanceLabel
+            // 
+            this.balanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.balanceLabel.Location = new System.Drawing.Point(591, 9);
+            this.balanceLabel.Name = "balanceLabel";
+            this.balanceLabel.Size = new System.Drawing.Size(99, 25);
+            this.balanceLabel.TabIndex = 44;
+            this.balanceLabel.Text = "<balanceLabel>";
+            this.balanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 412);
+            this.Controls.Add(this.balanceLabel);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.orderListview);
             this.Controls.Add(this.buynowButton);
             this.Controls.Add(this.volumeTextbox);
@@ -357,6 +375,8 @@
         private System.Windows.Forms.ColumnHeader currency;
         private System.Windows.Forms.ColumnHeader status;
         private System.Windows.Forms.Timer UpdatePricesTimer;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label balanceLabel;
 
     }
 }
