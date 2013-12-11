@@ -33,3 +33,6 @@ C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoin
 C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Mainpage.resources
 C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.Properties.Resources.resources
 C:\Users\Bent\Documents\GitHub\RTSBitcoin\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.csproj.GenerateResource.Cache
+D:\RTS - Cryptocoin project\RTSBitcoinProject\bin\Debug\RTSBitcoinProject.exe.config
+D:\RTS - Cryptocoin project\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.exe
+D:\RTS - Cryptocoin project\RTSBitcoinProject\obj\Debug\RTSBitcoinProject.pdb
