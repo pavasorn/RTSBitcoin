@@ -1,0 +1,16 @@
+ApiTest/bin/
+ApiTest/bin/*.*
+ApiTest/obj/
+ApiTest/obj/*.*
+BtceApi/bin/
+BtceApi/bin/*.*
+BtceApi/obj/
+BtceApi/obj/*.*
+RTSBitcoinProject/bin/
+RTSBitcoinProject/bin/*.*
+RTSBitcoinProject/bin/Debug/
+RTSBitcoinProject/bin/Debug/*.*
+RTSBitcoinProject/bin/Release/
+RTSBitcoinProject/bin/Release/*.*
+RTSBitcoinProject/obj/
+RTSBitcoinProject/obj/*.*
