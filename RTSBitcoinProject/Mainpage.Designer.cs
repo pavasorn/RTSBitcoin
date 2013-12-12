@@ -218,6 +218,8 @@
             this.orderListview.TabIndex = 42;
             this.orderListview.UseCompatibleStateImageBehavior = false;
             this.orderListview.View = System.Windows.Forms.View.Details;
+            // mousehandler
+            this.orderListview.MouseClick += new System.Windows.Forms.MouseEventHandler(this.orderListview_MouseClick);
             // 
             // orderTime
             // 

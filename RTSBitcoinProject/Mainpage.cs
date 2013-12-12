@@ -9,6 +9,7 @@ namespace RTSBitcoinProject
     {
         readonly CultureInfo _culture = CultureInfo.InvariantCulture;
         private Ticker _ticker = null;
+        private ListViewItem selectedItem;
 
         public Mainpage()
         {
@@ -81,6 +82,26 @@ namespace RTSBitcoinProject
             item1.SubItems.Add("SubItem1d");
             item1.SubItems.Add("Sell");
             orderListview.Items.Add(item1);
+        }
+        
+        private void orderListview_MouseClick(object sender, MouseEventArgs e)
+        {
+            ContextMenuStrip myContextMenu = new ContextMenuStrip();
+            selectedItem = orderListview.GetItemAt(e.X, e.Y);
+            if (e.Button == MouseButtons.Right)
+            {
+                if (selectedItem != null)
+                {
+                    myContextMenu.Items.Add("cancel");
+                    myContextMenu.Show(Cursor.Position);
+                    myContextMenu.ItemClicked += new ToolStripItemClickedEventHandler(myContextMenu_ItemClicked);
+                }
+            }
+        }
+        
+        private void myContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            orderListview.Items.Remove(selectedItem);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
