@@ -4,13 +4,13 @@ namespace BtcE
 {
     public enum BtcePair
     {
-        btc_usd,
+        ltc_eur,
         btc_eur,
         ltc_btc,
-        ltc_usd,
-        nvc_btc,
         eur_usd,
-        Unknown
+        ltc_usd,
+        btc_usd,
+        nvc_btc,
     }
 
     public class BtcePairHelper
