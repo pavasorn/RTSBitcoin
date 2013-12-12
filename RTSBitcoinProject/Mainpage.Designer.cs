@@ -56,6 +56,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.notationPic = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.notationPic)).BeginInit();
             this.SuspendLayout();
             // 
             // buynowButton
@@ -66,6 +68,7 @@
             this.buynowButton.TabIndex = 41;
             this.buynowButton.Text = "Buy Now";
             this.buynowButton.UseVisualStyleBackColor = true;
+            this.buynowButton.Click += new System.EventHandler(this.buynowButton_Click);
             // 
             // label4
             // 
@@ -115,6 +118,7 @@
             this.sellnowButton.TabIndex = 32;
             this.sellnowButton.Text = "Sell Now";
             this.sellnowButton.UseVisualStyleBackColor = true;
+            this.sellnowButton.Click += new System.EventHandler(this.sellnowButton_Click);
             // 
             // sellpriceLabel
             // 
@@ -218,7 +222,6 @@
             this.orderListview.TabIndex = 42;
             this.orderListview.UseCompatibleStateImageBehavior = false;
             this.orderListview.View = System.Windows.Forms.View.Details;
-            // mousehandler
             this.orderListview.MouseClick += new System.Windows.Forms.MouseEventHandler(this.orderListview_MouseClick);
             // 
             // orderTime
@@ -286,11 +289,22 @@
             this.label9.TabIndex = 45;
             this.label9.Text = "Pending transactions";
             // 
+            // notationPic
+            // 
+            this.notationPic.Image = global::RTSBitcoinProject.Properties.Resources.redArrow;
+            this.notationPic.Location = new System.Drawing.Point(93, 156);
+            this.notationPic.Name = "notationPic";
+            this.notationPic.Size = new System.Drawing.Size(16, 13);
+            this.notationPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.notationPic.TabIndex = 46;
+            this.notationPic.TabStop = false;
+            // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 412);
+            this.Controls.Add(this.notationPic);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.label6);
@@ -319,6 +333,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);
             this.Load += new System.EventHandler(this.Mainpage_Load);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.notationPic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,6 +368,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox notationPic;
 
     }
 }

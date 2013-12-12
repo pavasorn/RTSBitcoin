@@ -71,6 +71,7 @@ namespace RTSBitcoinProject
             item1.SubItems.Add("SubItem1d");
             item1.SubItems.Add("Buy");
             orderListview.Items.Add(item1);
+            
         }
 
         private void sellatButton_Click(object sender, EventArgs e)
@@ -117,6 +118,16 @@ namespace RTSBitcoinProject
         private void Mainpage_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buynowButton_Click(object sender, EventArgs e)
+        {
+            notationPic.Image = global::RTSBitcoinProject.Properties.Resources.greenArrow;
+        }
+
+        private void sellnowButton_Click(object sender, EventArgs e)
+        {
+            notationPic.Image = global::RTSBitcoinProject.Properties.Resources.redArrow;
         }
     }
 }
