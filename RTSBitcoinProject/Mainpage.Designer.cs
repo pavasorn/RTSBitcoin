@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buynowButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.currencyComboBox = new System.Windows.Forms.ComboBox();
@@ -57,7 +60,9 @@
             this.balanceLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.notationPic = new System.Windows.Forms.PictureBox();
+            this.priceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.notationPic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceChart)).BeginInit();
             this.SuspendLayout();
             // 
             // buynowButton
@@ -299,11 +304,46 @@
             this.notationPic.TabIndex = 46;
             this.notationPic.TabStop = false;
             // 
+            // priceChart
+            // 
+            this.priceChart.BackImageTransparentColor = System.Drawing.Color.Black;
+            this.priceChart.BackSecondaryColor = System.Drawing.Color.Black;
+            this.priceChart.BorderlineColor = System.Drawing.Color.Black;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.BackImageTransparentColor = System.Drawing.Color.White;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.priceChart.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.priceChart.Legends.Add(legend1);
+            this.priceChart.Location = new System.Drawing.Point(226, 245);
+            this.priceChart.Name = "priceChart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series1.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
+            series1.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
+            series1.Legend = "Legend1";
+            series1.MarkerBorderColor = System.Drawing.Color.Navy;
+            series1.MarkerColor = System.Drawing.Color.DarkBlue;
+            series1.MarkerImageTransparentColor = System.Drawing.Color.White;
+            series1.Name = "price";
+            series1.YValuesPerPoint = 4;
+            this.priceChart.Series.Add(series1);
+            this.priceChart.Size = new System.Drawing.Size(496, 155);
+            this.priceChart.TabIndex = 47;
+            this.priceChart.Text = "priceChart";
+            // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 412);
+            this.ClientSize = new System.Drawing.Size(734, 412);
+            this.Controls.Add(this.priceChart);
             this.Controls.Add(this.notationPic);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.balanceLabel);
@@ -334,6 +374,7 @@
             this.Load += new System.EventHandler(this.Mainpage_Load);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.notationPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,6 +410,7 @@
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox notationPic;
+        private System.Windows.Forms.DataVisualization.Charting.Chart priceChart;
 
     }
 }

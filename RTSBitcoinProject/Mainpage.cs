@@ -123,11 +123,50 @@ namespace RTSBitcoinProject
         private void buynowButton_Click(object sender, EventArgs e)
         {
             notationPic.Image = global::RTSBitcoinProject.Properties.Resources.greenArrow;
+            updatePriceChart();
         }
 
         private void sellnowButton_Click(object sender, EventArgs e)
         {
             notationPic.Image = global::RTSBitcoinProject.Properties.Resources.redArrow;
+        }
+        private void updatePriceChart()
+        {
+            // adding date and high
+            priceChart.Series["price"].Points.AddXY(1, 10f);
+            // adding low
+            priceChart.Series["price"].Points[0].YValues[1] = 8f;
+            //adding open
+            priceChart.Series["price"].Points[0].YValues[2] = 9f;
+            // adding close
+            priceChart.Series["price"].Points[0].YValues[3] = 9.5f;
+
+            // adding date and high
+            priceChart.Series["price"].Points.AddXY(2, 10f);
+            // adding low
+            priceChart.Series["price"].Points[1].YValues[1] = 8f;
+            //adding open
+            priceChart.Series["price"].Points[1].YValues[2] = 9.5f;
+            // adding close
+            priceChart.Series["price"].Points[1].YValues[3] = 9f;
+
+            // adding date and high
+            priceChart.Series["price"].Points.AddXY(3, 20f);
+            // adding low
+            priceChart.Series["price"].Points[2].YValues[1] = 18f;
+            //adding open
+            priceChart.Series["price"].Points[2].YValues[2] = 19.5f;
+            // adding close
+            priceChart.Series["price"].Points[2].YValues[3] = 19f;
+
+            // adding date and high
+            priceChart.Series["price"].Points.AddXY(4, 30f);
+            // adding low
+            priceChart.Series["price"].Points[3].YValues[1] = 10f;
+            //adding open
+            priceChart.Series["price"].Points[3].YValues[2] = 25.5f;
+            // adding close
+            priceChart.Series["price"].Points[3].YValues[3] = 13f;
         }
     }
 }
