@@ -1,0 +1,7 @@
+﻿namespace RTSBitcoinProject
+{
+    class Control
+    {
+
+    }
+}

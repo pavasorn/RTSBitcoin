@@ -321,7 +321,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.priceChart.Legends.Add(legend1);
-            this.priceChart.Location = new System.Drawing.Point(226, 245);
+            this.priceChart.Location = new System.Drawing.Point(26, 406);
             this.priceChart.Name = "priceChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
@@ -342,7 +342,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 412);
+            this.ClientSize = new System.Drawing.Size(532, 562);
             this.Controls.Add(this.priceChart);
             this.Controls.Add(this.notationPic);
             this.Controls.Add(this.label9);
@@ -366,8 +366,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(750, 450);
-            this.MinimumSize = new System.Drawing.Size(500, 450);
+            this.MaximumSize = new System.Drawing.Size(750, 600);
+            this.MinimumSize = new System.Drawing.Size(500, 600);
             this.Name = "Mainpage";
             this.Text = "Mainpage";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);

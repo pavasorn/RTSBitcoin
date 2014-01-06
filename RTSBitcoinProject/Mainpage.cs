@@ -87,17 +87,15 @@ namespace RTSBitcoinProject
         
         private void orderListview_MouseClick(object sender, MouseEventArgs e)
         {
-            ContextMenuStrip myContextMenu = new ContextMenuStrip();
+            var myContextMenu = new ContextMenuStrip();
             selectedItem = orderListview.GetItemAt(e.X, e.Y);
-            if (e.Button == MouseButtons.Right)
-            {
-                if (selectedItem != null)
-                {
-                    myContextMenu.Items.Add("cancel");
-                    myContextMenu.Show(Cursor.Position);
-                    myContextMenu.ItemClicked += new ToolStripItemClickedEventHandler(myContextMenu_ItemClicked);
-                }
-            }
+            
+            if (e.Button != MouseButtons.Right) return;
+            if (selectedItem == null) return;
+            
+            myContextMenu.Items.Add("cancel");
+            myContextMenu.Show(Cursor.Position);
+            myContextMenu.ItemClicked += myContextMenu_ItemClicked;
         }
         
         private void myContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
