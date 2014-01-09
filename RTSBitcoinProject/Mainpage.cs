@@ -222,7 +222,7 @@ namespace RTSBitcoinProject
                 var operationPrice = Decimal.Parse(sellAtTextBox.Text, _culture);
                 var operationAmount = Decimal.Parse(sellAmountTextBox.Text, _culture);
 
-                var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
+                var tradeAnswer = _control.Sell(_pair, operationPrice, operationAmount);
                 balanceLabel.Text = _control.UpdateBalance();
                 SucessMessage();
             }
@@ -239,6 +239,7 @@ namespace RTSBitcoinProject
         private void timer1_Tick(object sender, EventArgs e)
         {
             UpdatePrices();
+            _control.UpdateBalance();
         }
         private void Mainpage_Closed(object sender, FormClosedEventArgs e)
         {

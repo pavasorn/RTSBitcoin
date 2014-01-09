@@ -23,10 +23,9 @@ namespace RTSBitcoinProject
 
         public string UpdateBalance()
         {
-            _btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
+            if (_btceApi == null) _btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
+            
             var userInfo = _btceApi.GetInfo();
-            if (_btceApi.Equals(null)) return null;
-
             return userInfo.Funds.Ltc.ToString(_culture) + "LTC";
         }
 

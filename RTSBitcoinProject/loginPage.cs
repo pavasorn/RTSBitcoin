@@ -31,9 +31,7 @@ namespace RTSBitcoinProject
         private void Login()
         {
             try
-            {
-                if (new Control().UpdateBalance()==null) return;
-
+            {  // TODO if not successfull, do not open
                 Hide();
                 _mainPage.Show();
             }
