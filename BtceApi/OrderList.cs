@@ -16,8 +16,7 @@ namespace BtcE
 
         public static Order ReadFromJObject(JObject o)
         {
-            if (o == null)
-                return null;
+            if (o == null) return null;
             return new Order
             {
                 Pair = BtcePairHelper.FromString(o.Value<string>("pair")),
@@ -32,16 +31,7 @@ namespace BtcE
 
     public class OrderList
     {
-        public Dictionary<int, Order> List { get; private set; }
-
-        public static OrderList ReadFromJObject(JObject o)
-        {
-            return new OrderList
-            {
-                List =
-                    o.OfType<KeyValuePair<string, JToken>>()
-                        .ToDictionary(item => int.Parse(item.Key), item => Order.ReadFromJObject(item.Value as JObject))
-            };
-        }
+        public int Success { get; set; }
+        public Dictionary<string, Order> @return { get; set; }
     }
 }

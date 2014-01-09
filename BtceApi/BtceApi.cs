@@ -13,6 +13,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace BtcE
@@ -138,10 +139,20 @@ namespace BtcE
             if (end != null) args.Add("end", UnixTime.GetFromDateTime(end.Value).ToString());
             if (pair != null) args.Add("pair", BtcePairHelper.ToString(pair.Value));
             if (active != null) args.Add("active", active.Value ? "1" : "0");
-            JObject result = JObject.Parse(Query(args));
-            if (result.Value<int>("success") == 0)
-                throw new Exception(result.Value<string>("error"));
-            return OrderList.ReadFromJObject(result["return"] as JObject);
+            //var result = JObject.Parse(Query(args));
+
+            return JsonConvert.DeserializeObject<OrderList>(Query(args));
+        }
+
+        public OrderList GetActiveOrderList()
+        {
+            var args = new Dictionary<string, string>
+            {
+                {"method", "ActiveOrders"}
+            };
+            var activeOrders = JsonConvert.DeserializeObject<OrderList>(Query(args));
+            
+            return activeOrders.Success == 0 ? null : activeOrders;
         }
 
         public TradeAnswer Trade(BtcePair pair, TradeType type, decimal rate, decimal amount)

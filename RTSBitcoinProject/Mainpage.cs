@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using BtcE;
 
@@ -12,15 +13,6 @@ namespace RTSBitcoinProject
         //notationPic.Image = Properties.Resources.greenArrow;
         //notationPic.Image = Properties.Resources.redArrow;
         //UpdatePriceChart();
-
-        // Add item function
-        //var item1 = new ListViewItem("Time");
-        //item1.SubItems.Add("SubItem1a");
-        //item1.SubItems.Add("SubItem1b");
-        //item1.SubItems.Add("SubItem1c");
-        //item1.SubItems.Add("SubItem1d");
-        //item1.SubItems.Add("Buy");
-        //orderListview.Items.Add(item1);
         #endregion
 
         #region Initialisation
@@ -46,6 +38,7 @@ namespace RTSBitcoinProject
                 balanceLabel.Text = _control.UpdateBalance();
                 UpdatePricesTimer.Enabled = true;
                 UpdatePrices();
+                UpdateOrderHistory();
             }
             catch (Exception ex)
             {
@@ -120,7 +113,7 @@ namespace RTSBitcoinProject
 
         #region MouseEvents
 
-        #region currencyComboBox
+        #region CurrencyComboBox
         private void currencyComboBox_Click(object sender, EventArgs e)
         {
             UpdatePrices();
@@ -149,6 +142,22 @@ namespace RTSBitcoinProject
             myContextMenu.Items.Add("cancel");
             myContextMenu.Show(Cursor.Position);
             myContextMenu.ItemClicked += myContextMenu_ItemClicked;
+        }
+
+        private void UpdateOrderHistory()
+        {
+            var activeOrdersDictionary = _control.GetActiveOrderList().@return;
+
+            foreach (var order in activeOrdersDictionary.Values)
+            {
+                var item = new ListViewItem(order.TimestampCreated.ToString());
+                item.SubItems.Add(order.Type.ToString());
+                item.SubItems.Add(order.Amount.ToString());
+                item.SubItems.Add(order.Rate.ToString());
+                item.SubItems.Add(order.Pair.ToString());
+                item.SubItems.Add(order.Status.ToString());
+                orderListview.Items.Add(item);
+            }
         }
         #endregion
 

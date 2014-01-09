@@ -10,6 +10,17 @@ namespace RTSBitcoinProject
         readonly CultureInfo _culture = CultureInfo.InvariantCulture;
         private BtceApi _btceApi;
 
+        public object[] AddCurrencies()
+        {
+            var currencyComboBox = new ComboBox();
+            foreach (var item in Enum.GetValues(typeof(BtcePair)))
+                currencyComboBox.Items.Add(item.ToString().ToUpper());
+
+            var items = new object[currencyComboBox.Items.Count];
+            currencyComboBox.Items.CopyTo(items, 0);
+            return items;
+        }
+
         public string UpdateBalance()
         {
             _btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
@@ -24,15 +35,9 @@ namespace RTSBitcoinProject
             return BtceApi.GetTicker(BtcePairHelper.FromString(input));
         }
 
-        public object[] AddCurrencies()
+        public OrderList GetActiveOrderList()
         {
-            var currencyComboBox = new ComboBox();
-            foreach (var item in Enum.GetValues(typeof(BtcePair)))
-                currencyComboBox.Items.Add(item.ToString().ToUpper());
-
-            var items = new object[currencyComboBox.Items.Count];
-            currencyComboBox.Items.CopyTo(items,0);
-            return items;
+            return _btceApi.GetActiveOrderList();
         }
 
         public TradeAnswer Buy(string pairString, decimal operationPrice, decimal amount)
