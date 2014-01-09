@@ -118,6 +118,7 @@
             this.Controls.Add(this.loginButton);
             this.Name = "LoginPage";
             this.Text = "loginPage";
+            this.Load += new System.EventHandler(this.LoginPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

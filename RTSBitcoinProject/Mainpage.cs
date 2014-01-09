@@ -7,128 +7,78 @@ namespace RTSBitcoinProject
 {
     public partial class Mainpage : Form
     {
+        #region Not implemented functions
+        // Arrow and chart functions
+        //notationPic.Image = Properties.Resources.greenArrow;
+        //notationPic.Image = Properties.Resources.redArrow;
+        //UpdatePriceChart();
+
+        // Add item function
+        //var item1 = new ListViewItem("Time");
+        //item1.SubItems.Add("SubItem1a");
+        //item1.SubItems.Add("SubItem1b");
+        //item1.SubItems.Add("SubItem1c");
+        //item1.SubItems.Add("SubItem1d");
+        //item1.SubItems.Add("Buy");
+        //orderListview.Items.Add(item1);
+        #endregion
+
+        #region Initialisation
         readonly CultureInfo _culture = CultureInfo.InvariantCulture;
-        private Ticker _ticker = null;
-        private ListViewItem selectedItem;
+        readonly Control _control = new Control();
+        private ListViewItem _selectedItem;
+        private Ticker _ticker;
+        private string _pair;
 
         public Mainpage()
         {
             InitializeComponent();
             orderListview.FullRowSelect = true;
         }
+        #endregion
 
-        private void Mainpage_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        #region MainRegion
         private void Mainpage_Shown(object sender, EventArgs e)
         {
-            UpdatePricesTimer.Enabled = true;
-            AddCurrencies();
-            UpdatePrices(); 
-            UpdateBalance();
-        }
-
-        public bool UpdateBalance()
-        {
-            var btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
-            var userInfo = btceApi.GetInfo();
-
-            if (btceApi.Equals(null)) return false;
-
-            balanceLabel.Text = userInfo.Funds.Ltc.ToString(_culture) + "LTC";
-            return true;
-        }
-
-        private void UpdatePrices()
-        {
-            _ticker = BtceApi.GetTicker(BtcePairHelper.FromString(currencyComboBox.SelectedItem.ToString()));
-
-            highpriceLabel.Text = _ticker.High.ToString(_culture);
-            avgpriceLabel.Text = _ticker.Average.ToString(_culture);
-            lowpriceLabel.Text = _ticker.Low.ToString(_culture);
-
-            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
-            sellpriceLabel.Text = _ticker.Sell.ToString(_culture);
+            try
+            {
+                AddCurrencies();
+                balanceLabel.Text = _control.UpdateBalance();
+                UpdatePricesTimer.Enabled = true;
+                UpdatePrices();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void AddCurrencies()
         {
-            foreach (var item in Enum.GetValues(typeof (BtcePair)))
-            {
-                currencyComboBox.Items.Add(item);
-            }
-            currencyComboBox.SelectedIndex = 0;
+            currencyComboBox.Items.AddRange(_control.AddCurrencies());
+            currencyComboBox.SelectedIndex = currencyComboBox.Items.IndexOf("LTC_USD");
         }
 
-        private void buyatButton_Click(object sender, EventArgs e)
+        private void UpdatePrices()
         {
-            var item1 = new ListViewItem("Time");
-            item1.SubItems.Add("SubItem1a");
-            item1.SubItems.Add("SubItem1b");
-            item1.SubItems.Add("SubItem1c");
-            item1.SubItems.Add("SubItem1d");
-            item1.SubItems.Add("Buy");
-            orderListview.Items.Add(item1);
+            _pair = currencyComboBox.SelectedItem.ToString();
+            _ticker = _control.UpdatePrices(_pair);
             
-        }
-
-        private void sellatButton_Click(object sender, EventArgs e)
-        {
-            var item1 = new ListViewItem("Time");
-            item1.SubItems.Add("SubItem1a");
-            item1.SubItems.Add("SubItem1b");
-            item1.SubItems.Add("SubItem1c");
-            item1.SubItems.Add("SubItem1d");
-            item1.SubItems.Add("Sell");
-            orderListview.Items.Add(item1);
-        }
-        
-        private void orderListview_MouseClick(object sender, MouseEventArgs e)
-        {
-            var myContextMenu = new ContextMenuStrip();
-            selectedItem = orderListview.GetItemAt(e.X, e.Y);
+            highpriceLabel.Text = _ticker.High.ToString(_culture);
+            avgpriceLabel.Text = _ticker.Average.ToString(_culture);
+            lowpriceLabel.Text = _ticker.Low.ToString(_culture);
             
-            if (e.Button != MouseButtons.Right) return;
-            if (selectedItem == null) return;
-            
-            myContextMenu.Items.Add("cancel");
-            myContextMenu.Show(Cursor.Position);
-            myContextMenu.ItemClicked += myContextMenu_ItemClicked;
-        }
-        
-        private void myContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            orderListview.Items.Remove(selectedItem);
+            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
+            sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
+
+            if (!buyAutoUpdateCheckBox.Checked) return;
+            buyAtTextBox.Text = (_ticker.Buy * 0.99m).ToString(_culture);
+
+            if (!sellAutoUpdateCheckBox.Checked) return;
+            sellAtTextBox.Text = (_ticker.Sell * 1.02m).ToString(_culture);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            UpdatePrices();
-        }
-
-        private void currencyComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdatePrices();
-        }
-
-        private void Mainpage_Closed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void buynowButton_Click(object sender, EventArgs e)
-        {
-            notationPic.Image = global::RTSBitcoinProject.Properties.Resources.greenArrow;
-            updatePriceChart();
-        }
-
-        private void sellnowButton_Click(object sender, EventArgs e)
-        {
-            notationPic.Image = global::RTSBitcoinProject.Properties.Resources.redArrow;
-        }
-        private void updatePriceChart()
+        private void UpdatePriceChart()
         {
             // adding date and high
             priceChart.Series["price"].Points.AddXY(1, 10f);
@@ -166,5 +116,130 @@ namespace RTSBitcoinProject
             // adding close
             priceChart.Series["price"].Points[3].YValues[3] = 13f;
         }
+        #endregion
+
+        #region MouseEvents
+
+        #region currencyComboBox
+        private void currencyComboBox_Click(object sender, EventArgs e)
+        {
+            UpdatePrices();
+        }
+
+        private void currencyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdatePrices();
+        }
+        #endregion
+
+        #region OrdersHistory
+        private void myContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            orderListview.Items.Remove(_selectedItem);
+        }
+
+        private void orderListview_MouseClick(object sender, MouseEventArgs e)
+        {
+            var myContextMenu = new ContextMenuStrip();
+            _selectedItem = orderListview.GetItemAt(e.X, e.Y);
+
+            if (e.Button != MouseButtons.Right) return;
+            if (_selectedItem == null) return;
+
+            myContextMenu.Items.Add("cancel");
+            myContextMenu.Show(Cursor.Position);
+            myContextMenu.ItemClicked += myContextMenu_ItemClicked;
+        }
+        #endregion
+
+        #region Buy
+        private void buynowButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var operationPrice = Decimal.Parse(buypriceLabel.Text,_culture);
+                var operationAmount = Decimal.Parse(buyAmountTextBox.Text, _culture);
+
+                var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
+                balanceLabel.Text = _control.UpdateBalance();
+                SucessMessage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buyatButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var operationPrice = Decimal.Parse(buyAtTextBox.Text, _culture);
+                var operationAmount = Decimal.Parse(buyAmountTextBox.Text, _culture);
+
+                var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
+                balanceLabel.Text = _control.UpdateBalance();
+                SucessMessage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Sell
+        private void sellnowButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var operationPrice = Decimal.Parse(sellPriceLabel.Text, _culture);
+                var operationAmount = Decimal.Parse(sellAmountTextBox.Text, _culture);
+
+                var tradeAnswer = _control.Sell(_pair, operationPrice, operationAmount);
+                balanceLabel.Text = _control.UpdateBalance();
+                SucessMessage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void sellatButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var operationPrice = Decimal.Parse(sellAtTextBox.Text, _culture);
+                var operationAmount = Decimal.Parse(sellAmountTextBox.Text, _culture);
+
+                var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
+                balanceLabel.Text = _control.UpdateBalance();
+                SucessMessage();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region Tools
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            UpdatePrices();
+        }
+        private void Mainpage_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void SucessMessage()
+        {
+            MessageBox.Show(@"Transaction performed successfully");
+        }
+        #endregion
     }
 }

@@ -6,21 +6,25 @@ namespace RTSBitcoinProject
 {
     public partial class LoginPage : Form
     {
-        public static string Key { get; set; }
-        public static string Secret { get; set; }
         public static UserInfo UserInfo { get; set; }
         private readonly Mainpage _mainPage = new Mainpage();
+        public static string Key;
+        public static string Secret;
+
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
+        }
 
         public LoginPage()
         {
             InitializeComponent();
         }
 
-        private void loginButton_Click(object sender, System.EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
-            Key = apikeyTextBox.Text;
+
             Secret = apisecretTextBox.Text;
-            
+            Key = apikeyTextBox.Text;
             Login();
         }
 
@@ -28,11 +32,10 @@ namespace RTSBitcoinProject
         {
             try
             {
-                if (_mainPage.UpdateBalance())
-                {
-                    Hide();
-                    _mainPage.Show();
-                }
+                if (new Control().UpdateBalance()==null) return;
+
+                Hide();
+                _mainPage.Show();
             }
             catch (Exception)
             {
