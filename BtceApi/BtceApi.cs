@@ -150,8 +150,11 @@ namespace BtcE
             {
                 {"method", "ActiveOrders"}
             };
-            var activeOrders = JsonConvert.DeserializeObject<OrderList>(Query(args));
-            
+            var query = Query(args);
+            var activeOrders = JsonConvert.DeserializeObject<OrderList>(query);
+           
+            Console.WriteLine(query);
+
             return activeOrders.Success == 0 ? null : activeOrders;
         }
 
@@ -188,8 +191,8 @@ namespace BtcE
         {
             args.Add("nonce", GetNonce().ToString());
 
-            string dataStr = BuildPostData(args);
-            byte[] data = Encoding.ASCII.GetBytes(dataStr);
+            var dataStr = BuildPostData(args);
+            var data = Encoding.ASCII.GetBytes(dataStr);
 
             var request = WebRequest.Create(new Uri("https://btc-e.com/tapi")) as HttpWebRequest;
             if (request == null)
@@ -202,7 +205,7 @@ namespace BtcE
 
             request.Headers.Add("Key", _key);
             request.Headers.Add("Sign", ByteArrayToString(_hashMaker.ComputeHash(data)).ToLower());
-            Stream reqStream = request.GetRequestStream();
+            var reqStream = request.GetRequestStream();
             reqStream.Write(data, 0, data.Length);
             reqStream.Close();
             return new StreamReader(request.GetResponse().GetResponseStream()).ReadToEnd();

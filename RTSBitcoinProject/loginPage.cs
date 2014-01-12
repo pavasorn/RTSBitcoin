@@ -31,8 +31,7 @@ namespace RTSBitcoinProject
         private void Login()
         {
             try
-            {  // TODO if not successfull, do not open
-                Hide();
+            {   Hide();
                 _mainPage.Show();
             }
             catch (Exception)

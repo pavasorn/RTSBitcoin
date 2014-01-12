@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 using BtcE;
 
@@ -35,9 +34,9 @@ namespace RTSBitcoinProject
             try
             {
                 AddCurrencies();
-                balanceLabel.Text = _control.UpdateBalance();
                 UpdatePricesTimer.Enabled = true;
                 UpdatePrices();
+                balanceLabel.Text = _control.UpdateBalance();
                 UpdateOrderHistory();
             }
             catch (Exception ex)
@@ -148,14 +147,14 @@ namespace RTSBitcoinProject
         {
             var activeOrdersDictionary = _control.GetActiveOrderList().@return;
 
-            foreach (var order in activeOrdersDictionary.Values)
+            foreach (var order in activeOrdersDictionary)
             {
-                var item = new ListViewItem(order.TimestampCreated.ToString());
-                item.SubItems.Add(order.Type.ToString());
-                item.SubItems.Add(order.Amount.ToString());
-                item.SubItems.Add(order.Rate.ToString());
-                item.SubItems.Add(order.Pair.ToString());
-                item.SubItems.Add(order.Status.ToString());
+                var item = new ListViewItem(order.Value.Timestamp_Created.ToString());
+                item.SubItems.Add(order.Key);
+                item.SubItems.Add(order.Value.Type.ToString());
+                item.SubItems.Add(order.Value.Amount.ToString());
+                item.SubItems.Add(order.Value.Rate.ToString());
+                item.SubItems.Add(order.Value.Pair.ToString());
                 orderListview.Items.Add(item);
             }
         }

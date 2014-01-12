@@ -23,7 +23,7 @@ namespace RTSBitcoinProject
 
         public string UpdateBalance()
         {
-            if (_btceApi == null) _btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
+            _btceApi = new BtceApi(LoginPage.Key, LoginPage.Secret);
             
             var userInfo = _btceApi.GetInfo();
             return userInfo.Funds.Ltc.ToString(_culture) + "LTC";
@@ -36,7 +36,9 @@ namespace RTSBitcoinProject
 
         public OrderList GetActiveOrderList()
         {
-            return _btceApi.GetActiveOrderList();
+            var activeOrderList = _btceApi.GetActiveOrderList();
+            if (activeOrderList == null) MessageBox.Show(@"NULL");
+            return activeOrderList;
         }
 
         public TradeAnswer Buy(string pairString, decimal operationPrice, decimal amount)

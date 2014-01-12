@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buynowButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.currencyComboBox = new System.Windows.Forms.ComboBox();
@@ -50,11 +50,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.orderListview = new System.Windows.Forms.ListView();
             this.orderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.orderId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orderType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.volume = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.currency = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UpdatePricesTimer = new System.Windows.Forms.Timer(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.balanceLabel = new System.Windows.Forms.Label();
@@ -225,11 +225,11 @@
             // 
             this.orderListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.orderTime,
+            this.orderId,
             this.orderType,
             this.volume,
             this.price,
-            this.currency,
-            this.status});
+            this.currency});
             this.orderListview.Location = new System.Drawing.Point(23, 238);
             this.orderListview.Name = "orderListview";
             this.orderListview.Size = new System.Drawing.Size(496, 162);
@@ -240,33 +240,33 @@
             // 
             // orderTime
             // 
-            this.orderTime.Text = "orderTime";
-            this.orderTime.Width = 114;
+            this.orderTime.Text = "Order Time";
+            this.orderTime.Width = 80;
+            // 
+            // orderId
+            // 
+            this.orderId.Text = "Order Id";
+            this.orderId.Width = 84;
             // 
             // orderType
             // 
-            this.orderType.Text = "orderType";
-            this.orderType.Width = 114;
+            this.orderType.Text = "Order Type";
+            this.orderType.Width = 69;
             // 
             // volume
             // 
-            this.volume.Text = "volume";
-            this.volume.Width = 114;
+            this.volume.Text = "Volume";
+            this.volume.Width = 79;
             // 
             // price
             // 
-            this.price.Text = "price";
-            this.price.Width = 114;
+            this.price.Text = "Rate";
+            this.price.Width = 94;
             // 
             // currency
             // 
-            this.currency.Text = "currency";
-            this.currency.Width = 114;
-            // 
-            // status
-            // 
-            this.status.Text = "status";
-            this.status.Width = 114;
+            this.currency.Text = "Currency";
+            this.currency.Width = 86;
             // 
             // UpdatePricesTimer
             // 
@@ -318,31 +318,31 @@
             this.priceChart.BackImageTransparentColor = System.Drawing.Color.Black;
             this.priceChart.BackSecondaryColor = System.Drawing.Color.Black;
             this.priceChart.BorderlineColor = System.Drawing.Color.Black;
-            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
-            chartArea3.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
-            chartArea3.BackColor = System.Drawing.Color.Black;
-            chartArea3.BackImageTransparentColor = System.Drawing.Color.White;
-            chartArea3.BackSecondaryColor = System.Drawing.Color.White;
-            chartArea3.BorderColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.priceChart.ChartAreas.Add(chartArea3);
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.priceChart.Legends.Add(legend3);
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.BackImageTransparentColor = System.Drawing.Color.White;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea1.BorderColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.priceChart.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.priceChart.Legends.Add(legend1);
             this.priceChart.Location = new System.Drawing.Point(26, 406);
             this.priceChart.Name = "priceChart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series3.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
-            series3.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
-            series3.Legend = "Legend1";
-            series3.MarkerBorderColor = System.Drawing.Color.Navy;
-            series3.MarkerColor = System.Drawing.Color.DarkBlue;
-            series3.MarkerImageTransparentColor = System.Drawing.Color.White;
-            series3.Name = "price";
-            series3.YValuesPerPoint = 4;
-            this.priceChart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series1.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
+            series1.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
+            series1.Legend = "Legend1";
+            series1.MarkerBorderColor = System.Drawing.Color.Navy;
+            series1.MarkerColor = System.Drawing.Color.DarkBlue;
+            series1.MarkerImageTransparentColor = System.Drawing.Color.White;
+            series1.Name = "price";
+            series1.YValuesPerPoint = 4;
+            this.priceChart.Series.Add(series1);
             this.priceChart.Size = new System.Drawing.Size(496, 155);
             this.priceChart.TabIndex = 47;
             this.priceChart.Text = "priceChart";
@@ -464,6 +464,7 @@
             this.MinimumSize = new System.Drawing.Size(500, 600);
             this.Name = "Mainpage";
             this.Text = "Mainpage";
+            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.notationPic)).EndInit();
@@ -497,7 +498,6 @@
         private System.Windows.Forms.ColumnHeader volume;
         private System.Windows.Forms.ColumnHeader price;
         private System.Windows.Forms.ColumnHeader currency;
-        private System.Windows.Forms.ColumnHeader status;
         private System.Windows.Forms.Timer UpdatePricesTimer;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balanceLabel;
@@ -512,6 +512,7 @@
         private System.Windows.Forms.TextBox sellAtTextBox;
         private System.Windows.Forms.CheckBox buyAutoUpdateCheckBox;
         private System.Windows.Forms.CheckBox sellAutoUpdateCheckBox;
+        private System.Windows.Forms.ColumnHeader orderId;
 
     }
 }

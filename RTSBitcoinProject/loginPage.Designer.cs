@@ -40,6 +40,8 @@
             // remembermeCheckbox
             // 
             this.remembermeCheckbox.AutoSize = true;
+            this.remembermeCheckbox.Checked = true;
+            this.remembermeCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.remembermeCheckbox.Location = new System.Drawing.Point(245, 109);
             this.remembermeCheckbox.Name = "remembermeCheckbox";
             this.remembermeCheckbox.Size = new System.Drawing.Size(118, 17);
