@@ -59,6 +59,7 @@ namespace RTSBitcoinProject
             highpriceLabel.Text = _ticker.High.ToString(_culture);
             avgpriceLabel.Text = _ticker.Average.ToString(_culture);
             lowpriceLabel.Text = _ticker.Low.ToString(_culture);
+            depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
             
             buypriceLabel.Text = _ticker.Buy.ToString(_culture);
             sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
@@ -127,6 +128,11 @@ namespace RTSBitcoinProject
         #region OrdersHistory
         private void myContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            var cancelOrderId = int.Parse(_selectedItem.Text);
+            var cancelOrderAnswer = _control.CancelOrder(cancelOrderId);
+            if (cancelOrderAnswer == null) return;
+
+            balanceLabel.Text = cancelOrderAnswer.Funds.Ltc.ToString();
             orderListview.Items.Remove(_selectedItem);
         }
 
@@ -145,12 +151,14 @@ namespace RTSBitcoinProject
 
         private void UpdateOrderHistory()
         {
-            var activeOrdersDictionary = _control.GetActiveOrderList().@return;
+            orderListview.Items.Clear();
+            var activeOrdersDictionary = _control.GetActiveOrderList();
+            if (activeOrdersDictionary == null) return;
 
-            foreach (var order in activeOrdersDictionary)
+            foreach (var order in activeOrdersDictionary.@return)
             {
-                var item = new ListViewItem(order.Value.Timestamp_Created.ToString());
-                item.SubItems.Add(order.Key);
+                var item = new ListViewItem(order.Key);
+                item.SubItems.Add(order.Value.Timestamp_Created.ToString());
                 item.SubItems.Add(order.Value.Type.ToString());
                 item.SubItems.Add(order.Value.Amount.ToString());
                 item.SubItems.Add(order.Value.Rate.ToString());
@@ -170,6 +178,7 @@ namespace RTSBitcoinProject
 
                 var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
                 balanceLabel.Text = _control.UpdateBalance();
+                UpdateOrderHistory();
                 SucessMessage();
             }
             catch (Exception ex)
@@ -187,6 +196,7 @@ namespace RTSBitcoinProject
 
                 var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
                 balanceLabel.Text = _control.UpdateBalance();
+                UpdateOrderHistory();
                 SucessMessage();
             }
             catch (Exception ex)
@@ -206,6 +216,7 @@ namespace RTSBitcoinProject
 
                 var tradeAnswer = _control.Sell(_pair, operationPrice, operationAmount);
                 balanceLabel.Text = _control.UpdateBalance();
+                UpdateOrderHistory();
                 SucessMessage();
             }
             catch (Exception ex)
@@ -223,6 +234,7 @@ namespace RTSBitcoinProject
 
                 var tradeAnswer = _control.Sell(_pair, operationPrice, operationAmount);
                 balanceLabel.Text = _control.UpdateBalance();
+                UpdateOrderHistory();
                 SucessMessage();
             }
             catch (Exception ex)

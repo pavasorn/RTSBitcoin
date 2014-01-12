@@ -37,7 +37,6 @@ namespace RTSBitcoinProject
         public OrderList GetActiveOrderList()
         {
             var activeOrderList = _btceApi.GetActiveOrderList();
-            if (activeOrderList == null) MessageBox.Show(@"NULL");
             return activeOrderList;
         }
 
@@ -49,6 +48,11 @@ namespace RTSBitcoinProject
         public TradeAnswer Sell(string pairString, decimal operationPrice, decimal amount)
         {
             return _btceApi.Trade(BtcePairHelper.FromString(pairString), TradeType.Sell, operationPrice, amount);
+        }
+
+        public CancelOrderAnswer CancelOrder(int orderId)
+        {
+            return _btceApi.CancelOrder(orderId);
         }
     }
 }
