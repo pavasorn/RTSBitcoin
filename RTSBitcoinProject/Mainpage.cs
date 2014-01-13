@@ -64,11 +64,36 @@ namespace RTSBitcoinProject
             buypriceLabel.Text = _ticker.Buy.ToString(_culture);
             sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
 
-            if (!buyAutoUpdateCheckBox.Checked) return;
-            buyAtTextBox.Text = (_ticker.Buy * 0.99m).ToString(_culture);
+            var percentage = 0m;
+
+            if (buyAutoUpdateCheckBox.Checked)
+            {
+                switch (BuyAtComboBox.SelectedText)
+                {
+                    case "1%": percentage = 0.99m; break;
+                    case "2%": percentage = 0.98m; break;
+                    case "3%": percentage = 0.97m; break;
+                    case "4%": percentage = 0.96m; break;
+                    case "5%": percentage = 0.95m; break;
+                    case "10%": percentage = 0.90m; break;
+                    default: percentage = 1m; break;
+                }
+                buyAtTextBox.Text = (_ticker.Buy * percentage).ToString(_culture);
+            }
 
             if (!sellAutoUpdateCheckBox.Checked) return;
-            sellAtTextBox.Text = (_ticker.Sell * 1.02m).ToString(_culture);
+
+            switch (SellAtComboBox.SelectedText)
+            {
+                case "1%": percentage = 1.01m; break;
+                case "2%": percentage = 1.02m; break;
+                case "3%": percentage = 1.03m; break;
+                case "4%": percentage = 1.04m; break;
+                case "5%": percentage = 1.05m; break;
+                case "10%": percentage = 1.10m; break;
+                default: percentage = 1m; break;
+            }
+            sellAtTextBox.Text = (_ticker.Sell * percentage).ToString(_culture);
         }
 
         private void UpdatePriceChart()
