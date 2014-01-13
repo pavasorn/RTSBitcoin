@@ -90,7 +90,7 @@ namespace RTSBitcoinProject
 
             if (!sellAutoUpdateCheckBox.Checked) return;
 
-            switch (SellAtComboBox.SelectedText)
+            switch (sellAtComboBox.SelectedText)
             {
                 case "1%": percentage = 1.01m; break;
                 case "2%": percentage = 1.02m; break;
