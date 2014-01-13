@@ -8,10 +8,9 @@ namespace RTSBitcoinProject
     public partial class Mainpage : Form
     {
         #region Not implemented functions
-        // Arrow and chart functions
-        //notationPic.Image = Properties.Resources.greenArrow;
-        //notationPic.Image = Properties.Resources.redArrow;
+        // chart functions
         //UpdatePriceChart();
+        
         #endregion
 
         #region Initialisation
@@ -60,8 +59,16 @@ namespace RTSBitcoinProject
             avgpriceLabel.Text = _ticker.Average.ToString(_culture);
             lowpriceLabel.Text = _ticker.Low.ToString(_culture);
             depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
-            
+            if (buypriceLabel.Text != "<buypriceLabel>")
+            {
+                updateArrow(Convert.ToDouble(buypriceLabel.Text),Convert.ToDouble(_ticker.Buy),notationPic1);
+            }
+           
             buypriceLabel.Text = _ticker.Buy.ToString(_culture);
+            if (sellPriceLabel.Text != "<sellpriceLabel>")
+            {
+                updateArrow(Convert.ToDouble(sellPriceLabel.Text), Convert.ToDouble(_ticker.Sell), notationPic2);
+            }
             sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
 
             if (!buyAutoUpdateCheckBox.Checked) return;
@@ -74,7 +81,7 @@ namespace RTSBitcoinProject
         private void UpdatePriceChart()
         {
             // adding date and high
-            priceChart.Series["price"].Points.AddXY(1, 10f);
+            priceChart.Series["price"].Points.AddXY("11:33", 10f);
             // adding low
             priceChart.Series["price"].Points[0].YValues[1] = 8f;
             //adding open
@@ -262,5 +269,22 @@ namespace RTSBitcoinProject
             MessageBox.Show(@"Transaction performed successfully");
         }
         #endregion
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            UpdatePriceChart();
+        }
+        private void updateArrow(double val1, double val2 , PictureBox pictureBox)
+        {
+            if (val1 < val2)
+            {
+                pictureBox.Image = Properties.Resources.greenArrow;
+            }
+            else if (val1 == val2){}
+            else
+            {
+                pictureBox.Image = Properties.Resources.redArrow;
+            }
+        }
     }
 }

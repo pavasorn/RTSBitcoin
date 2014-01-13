@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buynowButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.currencyComboBox = new System.Windows.Forms.ComboBox();
@@ -49,8 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.orderListview = new System.Windows.Forms.ListView();
-            this.orderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orderId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.orderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orderType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.volume = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -59,7 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.notationPic = new System.Windows.Forms.PictureBox();
+            this.notationPic1 = new System.Windows.Forms.PictureBox();
             this.priceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
             this.buyAmountTextBox = new System.Windows.Forms.TextBox();
@@ -71,8 +71,10 @@
             this.sellAutoUpdateCheckBox = new System.Windows.Forms.CheckBox();
             this.depthLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic)).BeginInit();
+            this.notationPic2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notationPic2)).BeginInit();
             this.SuspendLayout();
             // 
             // buynowButton
@@ -240,35 +242,35 @@
             this.orderListview.View = System.Windows.Forms.View.Details;
             this.orderListview.MouseClick += new System.Windows.Forms.MouseEventHandler(this.orderListview_MouseClick);
             // 
-            // orderTime
-            // 
-            this.orderTime.Text = "Order Time";
-            this.orderTime.Width = 87;
-            // 
             // orderId
             // 
             this.orderId.Text = "Order Id";
-            this.orderId.Width = 75;
+            this.orderId.Width = 82;
+            // 
+            // orderTime
+            // 
+            this.orderTime.Text = "Order Time";
+            this.orderTime.Width = 82;
             // 
             // orderType
             // 
             this.orderType.Text = "Order Type";
-            this.orderType.Width = 69;
+            this.orderType.Width = 82;
             // 
             // volume
             // 
             this.volume.Text = "Volume";
-            this.volume.Width = 79;
+            this.volume.Width = 82;
             // 
             // price
             // 
             this.price.Text = "Rate";
-            this.price.Width = 94;
+            this.price.Width = 82;
             // 
             // currency
             // 
             this.currency.Text = "Currency";
-            this.currency.Width = 86;
+            this.currency.Width = 83;
             // 
             // UpdatePricesTimer
             // 
@@ -305,46 +307,47 @@
             this.label9.TabIndex = 45;
             this.label9.Text = "Pending transactions";
             // 
-            // notationPic
+            // notationPic1
             // 
-            this.notationPic.Image = global::RTSBitcoinProject.Properties.Resources.redArrow;
-            this.notationPic.Location = new System.Drawing.Point(93, 156);
-            this.notationPic.Name = "notationPic";
-            this.notationPic.Size = new System.Drawing.Size(16, 13);
-            this.notationPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.notationPic.TabIndex = 46;
-            this.notationPic.TabStop = false;
+            this.notationPic1.Location = new System.Drawing.Point(127, 36);
+            this.notationPic1.Name = "notationPic1";
+            this.notationPic1.Size = new System.Drawing.Size(16, 13);
+            this.notationPic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.notationPic1.TabIndex = 46;
+            this.notationPic1.TabStop = false;
             // 
             // priceChart
             // 
             this.priceChart.BackImageTransparentColor = System.Drawing.Color.Black;
             this.priceChart.BackSecondaryColor = System.Drawing.Color.Black;
             this.priceChart.BorderlineColor = System.Drawing.Color.Black;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.BackImageTransparentColor = System.Drawing.Color.White;
-            chartArea2.BackSecondaryColor = System.Drawing.Color.White;
-            chartArea2.BorderColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.priceChart.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.priceChart.Legends.Add(legend2);
-            this.priceChart.Location = new System.Drawing.Point(26, 406);
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.BackImageTransparentColor = System.Drawing.Color.White;
+            chartArea1.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea1.BorderColor = System.Drawing.Color.DimGray;
+            chartArea1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.Name = "ChartArea1";
+            this.priceChart.ChartAreas.Add(chartArea1);
+            legend1.BorderColor = System.Drawing.Color.Black;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.priceChart.Legends.Add(legend1);
+            this.priceChart.Location = new System.Drawing.Point(23, 406);
             this.priceChart.Name = "priceChart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series2.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
-            series2.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
-            series2.Legend = "Legend1";
-            series2.MarkerBorderColor = System.Drawing.Color.Navy;
-            series2.MarkerColor = System.Drawing.Color.DarkBlue;
-            series2.MarkerImageTransparentColor = System.Drawing.Color.White;
-            series2.Name = "price";
-            series2.YValuesPerPoint = 4;
-            this.priceChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series1.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
+            series1.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
+            series1.Legend = "Legend1";
+            series1.MarkerBorderColor = System.Drawing.Color.Navy;
+            series1.MarkerColor = System.Drawing.Color.DarkBlue;
+            series1.MarkerImageTransparentColor = System.Drawing.Color.White;
+            series1.Name = "price";
+            series1.YValuesPerPoint = 4;
+            this.priceChart.Series.Add(series1);
             this.priceChart.Size = new System.Drawing.Size(496, 155);
             this.priceChart.TabIndex = 47;
             this.priceChart.Text = "priceChart";
@@ -443,11 +446,22 @@
             this.label12.TabIndex = 56;
             this.label12.Text = "Depth";
             // 
+            // notationPic2
+            // 
+            this.notationPic2.Location = new System.Drawing.Point(222, 36);
+            this.notationPic2.Name = "notationPic2";
+            this.notationPic2.Size = new System.Drawing.Size(16, 13);
+            this.notationPic2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.notationPic2.TabIndex = 58;
+            this.notationPic2.TabStop = false;
+            this.notationPic2.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 562);
+            this.Controls.Add(this.notationPic2);
             this.Controls.Add(this.depthLabel);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.sellAutoUpdateCheckBox);
@@ -459,7 +473,7 @@
             this.Controls.Add(this.buyAmountTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.priceChart);
-            this.Controls.Add(this.notationPic);
+            this.Controls.Add(this.notationPic1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.label6);
@@ -488,8 +502,9 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.notationPic2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,7 +538,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox notationPic;
+        private System.Windows.Forms.PictureBox notationPic1;
         private System.Windows.Forms.DataVisualization.Charting.Chart priceChart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox buyAmountTextBox;
@@ -536,6 +551,7 @@
         private System.Windows.Forms.ColumnHeader orderId;
         private System.Windows.Forms.Label depthLabel;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.PictureBox notationPic2;
 
     }
 }

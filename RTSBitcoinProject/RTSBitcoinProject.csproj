@@ -66,12 +66,14 @@
     </Compile>
     <EmbeddedResource Include="loginPage.resx">
       <DependentUpon>LoginPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Mainpage.resx">
       <DependentUpon>Mainpage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
@@ -89,6 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\greenArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
