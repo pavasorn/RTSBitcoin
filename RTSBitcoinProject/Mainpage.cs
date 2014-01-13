@@ -54,28 +54,25 @@ namespace RTSBitcoinProject
         {
             _pair = currencyComboBox.SelectedItem.ToString();
             _ticker = _control.UpdatePrices(_pair);
-            
+
+            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
+            sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
+            depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
+
             highpriceLabel.Text = _ticker.High.ToString(_culture);
             avgpriceLabel.Text = _ticker.Average.ToString(_culture);
             lowpriceLabel.Text = _ticker.Low.ToString(_culture);
-            depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
-            if (buypriceLabel.Text != "<buypriceLabel>")
-            {
-                updateArrow(Convert.ToDouble(buypriceLabel.Text),Convert.ToDouble(_ticker.Buy),notationPic1);
-            }
-           
-            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
-            if (sellPriceLabel.Text != "<sellpriceLabel>")
-            {
-                updateArrow(Convert.ToDouble(sellPriceLabel.Text), Convert.ToDouble(_ticker.Sell), notationPic2);
-            }
-            sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
+         
+            UpdateTradeAtComboBox();
+        }
 
-            var percentage = 0m;
-
-            if (buyAutoUpdateCheckBox.Checked)
+        private void UpdateTradeAtComboBox()
+        {
+            decimal percentage;
+            
+            if (buyAutoUpdateCheckBox.Checked && buyAtComboBox.SelectedItem!=null)
             {
-                switch (BuyAtComboBox.SelectedText)
+                switch (buyAtComboBox.SelectedItem.ToString())
                 {
                     case "1%": percentage = 0.99m; break;
                     case "2%": percentage = 0.98m; break;
@@ -88,20 +85,20 @@ namespace RTSBitcoinProject
                 buyAtTextBox.Text = (_ticker.Buy * percentage).ToString(_culture);
             }
 
-            if (!sellAutoUpdateCheckBox.Checked) return;
+            if (!sellAutoUpdateCheckBox.Checked || sellAtComboBox.SelectedItem==null) return;
 
-            switch (sellAtComboBox.SelectedText)
+            switch (sellAtComboBox.SelectedItem.ToString())
             {
                 case "1%": percentage = 1.01m; break;
                 case "2%": percentage = 1.02m; break;
                 case "3%": percentage = 1.03m; break;
                 case "4%": percentage = 1.04m; break;
                 case "5%": percentage = 1.05m; break;
-                case "10%": percentage = 1.10m; break;
+                case "10%": percentage = 1.1m; break;
                 default: percentage = 1m; break;
             }
             sellAtTextBox.Text = (_ticker.Sell * percentage).ToString(_culture);
-        }
+        }  
 
         private void UpdatePriceChart()
         {
@@ -299,7 +296,7 @@ namespace RTSBitcoinProject
         {
             UpdatePriceChart();
         }
-        private void updateArrow(double val1, double val2 , PictureBox pictureBox)
+        private void updateArrow(decimal val1, decimal val2 , PictureBox pictureBox)
         {
             if (val1 < val2)
             {

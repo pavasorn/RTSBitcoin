@@ -72,7 +72,7 @@
             this.depthLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.notationPic2 = new System.Windows.Forms.PictureBox();
-            this.BuyAtComboBox = new System.Windows.Forms.ComboBox();
+            this.buyAtComboBox = new System.Windows.Forms.ComboBox();
             this.sellAtComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).BeginInit();
@@ -276,7 +276,7 @@
             // 
             // UpdatePricesTimer
             // 
-            this.UpdatePricesTimer.Interval = 10000;
+            this.UpdatePricesTimer.Interval = 3000;
             this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label6
@@ -393,7 +393,7 @@
             // 
             // buyAtTextBox
             // 
-            this.buyAtTextBox.Location = new System.Drawing.Point(325, 85);
+            this.buyAtTextBox.Location = new System.Drawing.Point(325, 88);
             this.buyAtTextBox.MaxLength = 12;
             this.buyAtTextBox.Name = "buyAtTextBox";
             this.buyAtTextBox.Size = new System.Drawing.Size(89, 20);
@@ -401,7 +401,7 @@
             // 
             // sellAtTextBox
             // 
-            this.sellAtTextBox.Location = new System.Drawing.Point(324, 116);
+            this.sellAtTextBox.Location = new System.Drawing.Point(324, 119);
             this.sellAtTextBox.MaxLength = 12;
             this.sellAtTextBox.Name = "sellAtTextBox";
             this.sellAtTextBox.Size = new System.Drawing.Size(90, 20);
@@ -410,9 +410,7 @@
             // buyAutoUpdateCheckBox
             // 
             this.buyAutoUpdateCheckBox.AutoSize = true;
-            this.buyAutoUpdateCheckBox.Checked = true;
-            this.buyAutoUpdateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.buyAutoUpdateCheckBox.Location = new System.Drawing.Point(420, 88);
+            this.buyAutoUpdateCheckBox.Location = new System.Drawing.Point(420, 91);
             this.buyAutoUpdateCheckBox.Name = "buyAutoUpdateCheckBox";
             this.buyAutoUpdateCheckBox.Size = new System.Drawing.Size(83, 17);
             this.buyAutoUpdateCheckBox.TabIndex = 54;
@@ -422,9 +420,7 @@
             // sellAutoUpdateCheckBox
             // 
             this.sellAutoUpdateCheckBox.AutoSize = true;
-            this.sellAutoUpdateCheckBox.Checked = true;
-            this.sellAutoUpdateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sellAutoUpdateCheckBox.Location = new System.Drawing.Point(420, 120);
+            this.sellAutoUpdateCheckBox.Location = new System.Drawing.Point(420, 123);
             this.sellAutoUpdateCheckBox.Name = "sellAutoUpdateCheckBox";
             this.sellAutoUpdateCheckBox.Size = new System.Drawing.Size(83, 17);
             this.sellAutoUpdateCheckBox.TabIndex = 55;
@@ -458,21 +454,21 @@
             this.notationPic2.TabStop = false;
             this.notationPic2.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // BuyAtComboBox
+            // buyAtComboBox
             // 
-            this.BuyAtComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BuyAtComboBox.FormattingEnabled = true;
-            this.BuyAtComboBox.Items.AddRange(new object[] {
+            this.buyAtComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.buyAtComboBox.FormattingEnabled = true;
+            this.buyAtComboBox.Items.AddRange(new object[] {
             "1%",
             "2%",
             "3%",
             "4%",
             "5%",
             "10%"});
-            this.BuyAtComboBox.Location = new System.Drawing.Point(278, 85);
-            this.BuyAtComboBox.Name = "BuyAtComboBox";
-            this.BuyAtComboBox.Size = new System.Drawing.Size(41, 21);
-            this.BuyAtComboBox.TabIndex = 59;
+            this.buyAtComboBox.Location = new System.Drawing.Point(278, 85);
+            this.buyAtComboBox.Name = "buyAtComboBox";
+            this.buyAtComboBox.Size = new System.Drawing.Size(41, 21);
+            this.buyAtComboBox.TabIndex = 59;
             // 
             // sellAtComboBox
             // 
@@ -496,7 +492,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(522, 562);
             this.Controls.Add(this.sellAtComboBox);
-            this.Controls.Add(this.BuyAtComboBox);
+            this.Controls.Add(this.buyAtComboBox);
             this.Controls.Add(this.notationPic2);
             this.Controls.Add(this.depthLabel);
             this.Controls.Add(this.label12);
@@ -588,7 +584,7 @@
         private System.Windows.Forms.Label depthLabel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox notationPic2;
-        private System.Windows.Forms.ComboBox BuyAtComboBox;
+        private System.Windows.Forms.ComboBox buyAtComboBox;
         private System.Windows.Forms.ComboBox sellAtComboBox;
 
     }
