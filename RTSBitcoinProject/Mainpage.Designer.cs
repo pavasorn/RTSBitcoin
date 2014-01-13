@@ -39,7 +39,7 @@
             this.buyatButton = new System.Windows.Forms.Button();
             this.sellnowButton = new System.Windows.Forms.Button();
             this.sellPriceLabel = new System.Windows.Forms.Label();
-            this.buypriceLabel = new System.Windows.Forms.Label();
+            this.buyPriceLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.avgpriceLabel = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.notationPic1 = new System.Windows.Forms.PictureBox();
+            this.buyArrowPictureBox = new System.Windows.Forms.PictureBox();
             this.priceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
             this.buyAmountTextBox = new System.Windows.Forms.TextBox();
@@ -71,12 +71,12 @@
             this.sellAutoUpdateCheckBox = new System.Windows.Forms.CheckBox();
             this.depthLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.notationPic2 = new System.Windows.Forms.PictureBox();
+            this.sellArrowPictureBox = new System.Windows.Forms.PictureBox();
             this.buyAtComboBox = new System.Windows.Forms.ComboBox();
             this.sellAtComboBox = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buyArrowPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellArrowPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // buynowButton
@@ -148,13 +148,13 @@
             this.sellPriceLabel.TabIndex = 31;
             this.sellPriceLabel.Text = "<sellpriceLabel>";
             // 
-            // buypriceLabel
+            // buyPriceLabel
             // 
-            this.buypriceLabel.Location = new System.Drawing.Point(140, 57);
-            this.buypriceLabel.Name = "buypriceLabel";
-            this.buypriceLabel.Size = new System.Drawing.Size(60, 13);
-            this.buypriceLabel.TabIndex = 30;
-            this.buypriceLabel.Text = "<buypriceLabel>";
+            this.buyPriceLabel.Location = new System.Drawing.Point(140, 57);
+            this.buyPriceLabel.Name = "buyPriceLabel";
+            this.buyPriceLabel.Size = new System.Drawing.Size(60, 13);
+            this.buyPriceLabel.TabIndex = 30;
+            this.buyPriceLabel.Text = "<buypriceLabel>";
             // 
             // label8
             // 
@@ -309,14 +309,14 @@
             this.label9.TabIndex = 45;
             this.label9.Text = "Pending transactions";
             // 
-            // notationPic1
+            // buyArrowPictureBox
             // 
-            this.notationPic1.Location = new System.Drawing.Point(118, 35);
-            this.notationPic1.Name = "notationPic1";
-            this.notationPic1.Size = new System.Drawing.Size(16, 13);
-            this.notationPic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.notationPic1.TabIndex = 46;
-            this.notationPic1.TabStop = false;
+            this.buyArrowPictureBox.Location = new System.Drawing.Point(118, 35);
+            this.buyArrowPictureBox.Name = "buyArrowPictureBox";
+            this.buyArrowPictureBox.Size = new System.Drawing.Size(16, 13);
+            this.buyArrowPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.buyArrowPictureBox.TabIndex = 46;
+            this.buyArrowPictureBox.TabStop = false;
             // 
             // priceChart
             // 
@@ -337,7 +337,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.priceChart.Legends.Add(legend1);
-            this.priceChart.Location = new System.Drawing.Point(14, 403);
+            this.priceChart.Location = new System.Drawing.Point(13, 403);
             this.priceChart.Name = "priceChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
@@ -353,6 +353,7 @@
             this.priceChart.Size = new System.Drawing.Size(496, 155);
             this.priceChart.TabIndex = 47;
             this.priceChart.Text = "priceChart";
+            this.priceChart.Visible = false;
             // 
             // label5
             // 
@@ -444,15 +445,15 @@
             this.label12.TabIndex = 56;
             this.label12.Text = "Depth";
             // 
-            // notationPic2
+            // sellArrowPictureBox
             // 
-            this.notationPic2.Location = new System.Drawing.Point(213, 35);
-            this.notationPic2.Name = "notationPic2";
-            this.notationPic2.Size = new System.Drawing.Size(16, 13);
-            this.notationPic2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.notationPic2.TabIndex = 58;
-            this.notationPic2.TabStop = false;
-            this.notationPic2.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.sellArrowPictureBox.Location = new System.Drawing.Point(213, 35);
+            this.sellArrowPictureBox.Name = "sellArrowPictureBox";
+            this.sellArrowPictureBox.Size = new System.Drawing.Size(16, 13);
+            this.sellArrowPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sellArrowPictureBox.TabIndex = 58;
+            this.sellArrowPictureBox.TabStop = false;
+            this.sellArrowPictureBox.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // buyAtComboBox
             // 
@@ -493,7 +494,7 @@
             this.ClientSize = new System.Drawing.Size(522, 562);
             this.Controls.Add(this.sellAtComboBox);
             this.Controls.Add(this.buyAtComboBox);
-            this.Controls.Add(this.notationPic2);
+            this.Controls.Add(this.sellArrowPictureBox);
             this.Controls.Add(this.depthLabel);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.sellAutoUpdateCheckBox);
@@ -505,7 +506,7 @@
             this.Controls.Add(this.buyAmountTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.priceChart);
-            this.Controls.Add(this.notationPic1);
+            this.Controls.Add(this.buyArrowPictureBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.label6);
@@ -517,7 +518,7 @@
             this.Controls.Add(this.buyatButton);
             this.Controls.Add(this.sellnowButton);
             this.Controls.Add(this.sellPriceLabel);
-            this.Controls.Add(this.buypriceLabel);
+            this.Controls.Add(this.buyPriceLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.avgpriceLabel);
@@ -534,9 +535,9 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buyArrowPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellArrowPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,7 +552,7 @@
         private System.Windows.Forms.Button buyatButton;
         private System.Windows.Forms.Button sellnowButton;
         private System.Windows.Forms.Label sellPriceLabel;
-        private System.Windows.Forms.Label buypriceLabel;
+        private System.Windows.Forms.Label buyPriceLabel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label avgpriceLabel;
@@ -570,7 +571,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox notationPic1;
+        private System.Windows.Forms.PictureBox buyArrowPictureBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart priceChart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox buyAmountTextBox;
@@ -583,7 +584,7 @@
         private System.Windows.Forms.ColumnHeader orderId;
         private System.Windows.Forms.Label depthLabel;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox notationPic2;
+        private System.Windows.Forms.PictureBox sellArrowPictureBox;
         private System.Windows.Forms.ComboBox buyAtComboBox;
         private System.Windows.Forms.ComboBox sellAtComboBox;
 

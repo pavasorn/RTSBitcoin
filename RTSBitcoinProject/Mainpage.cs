@@ -10,7 +10,6 @@ namespace RTSBitcoinProject
         #region Not implemented functions
         // chart functions
         //UpdatePriceChart();
-        
         #endregion
 
         #region Initialisation
@@ -55,14 +54,22 @@ namespace RTSBitcoinProject
             _pair = currencyComboBox.SelectedItem.ToString();
             _ticker = _control.UpdatePrices(_pair);
 
-            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
+            decimal oldTradePrice;
+            
+            decimal.TryParse(buyPriceLabel.Text, NumberStyles.Any, _culture, out oldTradePrice);
+            buyPriceLabel.Text = _ticker.Buy.ToString(_culture);
+            if (oldTradePrice!=0) UpdateArrow(oldTradePrice, _ticker.Buy, buyArrowPictureBox);
+
+            decimal.TryParse(sellPriceLabel.Text, NumberStyles.Any, _culture, out oldTradePrice);
             sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
+            if (oldTradePrice != 0) UpdateArrow(oldTradePrice, _ticker.Sell, sellArrowPictureBox);
+            
             depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
 
             highpriceLabel.Text = _ticker.High.ToString(_culture);
             avgpriceLabel.Text = _ticker.Average.ToString(_culture);
             lowpriceLabel.Text = _ticker.Low.ToString(_culture);
-         
+            
             UpdateTradeAtComboBox();
         }
 
@@ -202,7 +209,7 @@ namespace RTSBitcoinProject
         {
             try
             {
-                var operationPrice = Decimal.Parse(buypriceLabel.Text,_culture);
+                var operationPrice = Decimal.Parse(buyPriceLabel.Text,_culture);
                 var operationAmount = Decimal.Parse(buyAmountTextBox.Text, _culture);
 
                 var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
@@ -296,17 +303,13 @@ namespace RTSBitcoinProject
         {
             UpdatePriceChart();
         }
-        private void updateArrow(decimal val1, decimal val2 , PictureBox pictureBox)
+        private static void UpdateArrow(decimal val1, decimal val2 , PictureBox pictureBox)
         {
             if (val1 < val2)
-            {
                 pictureBox.Image = Properties.Resources.greenArrow;
-            }
-            else if (val1 == val2){}
-            else
-            {
-                pictureBox.Image = Properties.Resources.redArrow;
-            }
+            else 
+                if (val1 > val2) 
+                    pictureBox.Image = Properties.Resources.redArrow;
         }
     }
 }
