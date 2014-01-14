@@ -81,7 +81,7 @@ namespace RTSBitcoinProject
         private void UpdatePriceChart()
         {
             // adding date and high
-            priceChart.Series["price"].Points.AddXY("11:33", 10f);
+            priceChart.Series["price"].Points.AddXY(1, 10f);
             // adding low
             priceChart.Series["price"].Points[0].YValues[1] = 8f;
             //adding open
