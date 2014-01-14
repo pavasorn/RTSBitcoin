@@ -39,7 +39,7 @@
             this.buyatButton = new System.Windows.Forms.Button();
             this.sellnowButton = new System.Windows.Forms.Button();
             this.sellPriceLabel = new System.Windows.Forms.Label();
-            this.buypriceLabel = new System.Windows.Forms.Label();
+            this.buyPriceLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.avgpriceLabel = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.balanceLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.notationPic1 = new System.Windows.Forms.PictureBox();
+            this.buyArrowPictureBox = new System.Windows.Forms.PictureBox();
             this.priceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
             this.buyAmountTextBox = new System.Windows.Forms.TextBox();
@@ -71,15 +71,17 @@
             this.sellAutoUpdateCheckBox = new System.Windows.Forms.CheckBox();
             this.depthLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.notationPic2 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).BeginInit();
+            this.sellArrowPictureBox = new System.Windows.Forms.PictureBox();
+            this.buyAtComboBox = new System.Windows.Forms.ComboBox();
+            this.sellAtComboBox = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.buyArrowPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellArrowPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // buynowButton
             // 
-            this.buynowButton.Location = new System.Drawing.Point(151, 85);
+            this.buynowButton.Location = new System.Drawing.Point(116, 85);
             this.buynowButton.Name = "buynowButton";
             this.buynowButton.Size = new System.Drawing.Size(75, 23);
             this.buynowButton.TabIndex = 41;
@@ -90,7 +92,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 10);
+            this.label4.Location = new System.Drawing.Point(12, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 38;
@@ -100,7 +102,7 @@
             // 
             this.currencyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.currencyComboBox.FormattingEnabled = true;
-            this.currencyComboBox.Location = new System.Drawing.Point(79, 6);
+            this.currencyComboBox.Location = new System.Drawing.Point(70, 5);
             this.currencyComboBox.Name = "currencyComboBox";
             this.currencyComboBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.currencyComboBox.Size = new System.Drawing.Size(81, 21);
@@ -110,7 +112,7 @@
             // 
             // sellatButton
             // 
-            this.sellatButton.Location = new System.Drawing.Point(232, 116);
+            this.sellatButton.Location = new System.Drawing.Point(197, 116);
             this.sellatButton.Name = "sellatButton";
             this.sellatButton.Size = new System.Drawing.Size(75, 23);
             this.sellatButton.TabIndex = 34;
@@ -120,7 +122,7 @@
             // 
             // buyatButton
             // 
-            this.buyatButton.Location = new System.Drawing.Point(232, 85);
+            this.buyatButton.Location = new System.Drawing.Point(197, 85);
             this.buyatButton.Name = "buyatButton";
             this.buyatButton.Size = new System.Drawing.Size(75, 23);
             this.buyatButton.TabIndex = 33;
@@ -130,7 +132,7 @@
             // 
             // sellnowButton
             // 
-            this.sellnowButton.Location = new System.Drawing.Point(151, 116);
+            this.sellnowButton.Location = new System.Drawing.Point(116, 116);
             this.sellnowButton.Name = "sellnowButton";
             this.sellnowButton.Size = new System.Drawing.Size(75, 23);
             this.sellnowButton.TabIndex = 32;
@@ -140,24 +142,24 @@
             // 
             // sellPriceLabel
             // 
-            this.sellPriceLabel.Location = new System.Drawing.Point(244, 58);
+            this.sellPriceLabel.Location = new System.Drawing.Point(235, 57);
             this.sellPriceLabel.Name = "sellPriceLabel";
             this.sellPriceLabel.Size = new System.Drawing.Size(51, 13);
             this.sellPriceLabel.TabIndex = 31;
             this.sellPriceLabel.Text = "<sellpriceLabel>";
             // 
-            // buypriceLabel
+            // buyPriceLabel
             // 
-            this.buypriceLabel.Location = new System.Drawing.Point(149, 58);
-            this.buypriceLabel.Name = "buypriceLabel";
-            this.buypriceLabel.Size = new System.Drawing.Size(60, 13);
-            this.buypriceLabel.TabIndex = 30;
-            this.buypriceLabel.Text = "<buypriceLabel>";
+            this.buyPriceLabel.Location = new System.Drawing.Point(140, 57);
+            this.buyPriceLabel.Name = "buyPriceLabel";
+            this.buyPriceLabel.Size = new System.Drawing.Size(60, 13);
+            this.buyPriceLabel.TabIndex = 30;
+            this.buyPriceLabel.Text = "<buypriceLabel>";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(244, 36);
+            this.label8.Location = new System.Drawing.Point(235, 35);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(51, 13);
             this.label8.TabIndex = 29;
@@ -166,7 +168,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(149, 36);
+            this.label7.Location = new System.Drawing.Point(140, 35);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 13);
             this.label7.TabIndex = 28;
@@ -174,7 +176,7 @@
             // 
             // avgpriceLabel
             // 
-            this.avgpriceLabel.Location = new System.Drawing.Point(229, 178);
+            this.avgpriceLabel.Location = new System.Drawing.Point(219, 175);
             this.avgpriceLabel.Name = "avgpriceLabel";
             this.avgpriceLabel.Size = new System.Drawing.Size(86, 13);
             this.avgpriceLabel.TabIndex = 27;
@@ -182,7 +184,7 @@
             // 
             // lowpriceLabel
             // 
-            this.lowpriceLabel.Location = new System.Drawing.Point(363, 178);
+            this.lowpriceLabel.Location = new System.Drawing.Point(353, 175);
             this.lowpriceLabel.Name = "lowpriceLabel";
             this.lowpriceLabel.Size = new System.Drawing.Size(63, 13);
             this.lowpriceLabel.TabIndex = 26;
@@ -191,7 +193,7 @@
             // highpriceLabel
             // 
             this.highpriceLabel.AutoSize = true;
-            this.highpriceLabel.Location = new System.Drawing.Point(113, 178);
+            this.highpriceLabel.Location = new System.Drawing.Point(103, 175);
             this.highpriceLabel.Name = "highpriceLabel";
             this.highpriceLabel.Size = new System.Drawing.Size(88, 13);
             this.highpriceLabel.TabIndex = 25;
@@ -201,7 +203,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(229, 156);
+            this.label3.Location = new System.Drawing.Point(219, 153);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 24;
@@ -210,7 +212,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(365, 156);
+            this.label2.Location = new System.Drawing.Point(355, 153);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 23;
@@ -219,7 +221,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(115, 156);
+            this.label1.Location = new System.Drawing.Point(105, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 22;
@@ -234,7 +236,7 @@
             this.volume,
             this.price,
             this.currency});
-            this.orderListview.Location = new System.Drawing.Point(23, 238);
+            this.orderListview.Location = new System.Drawing.Point(13, 235);
             this.orderListview.Name = "orderListview";
             this.orderListview.Size = new System.Drawing.Size(496, 162);
             this.orderListview.TabIndex = 42;
@@ -274,13 +276,13 @@
             // 
             // UpdatePricesTimer
             // 
-            this.UpdatePricesTimer.Interval = 10000;
+            this.UpdatePricesTimer.Interval = 3000;
             this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(365, 12);
+            this.label6.Location = new System.Drawing.Point(356, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 43;
@@ -289,7 +291,7 @@
             // balanceLabel
             // 
             this.balanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.balanceLabel.Location = new System.Drawing.Point(420, 6);
+            this.balanceLabel.Location = new System.Drawing.Point(411, 5);
             this.balanceLabel.Name = "balanceLabel";
             this.balanceLabel.Size = new System.Drawing.Size(99, 25);
             this.balanceLabel.TabIndex = 44;
@@ -301,20 +303,20 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.Control;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(22, 212);
+            this.label9.Location = new System.Drawing.Point(12, 209);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(178, 20);
             this.label9.TabIndex = 45;
             this.label9.Text = "Pending transactions";
             // 
-            // notationPic1
+            // buyArrowPictureBox
             // 
-            this.notationPic1.Location = new System.Drawing.Point(127, 36);
-            this.notationPic1.Name = "notationPic1";
-            this.notationPic1.Size = new System.Drawing.Size(16, 13);
-            this.notationPic1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.notationPic1.TabIndex = 46;
-            this.notationPic1.TabStop = false;
+            this.buyArrowPictureBox.Location = new System.Drawing.Point(118, 35);
+            this.buyArrowPictureBox.Name = "buyArrowPictureBox";
+            this.buyArrowPictureBox.Size = new System.Drawing.Size(16, 13);
+            this.buyArrowPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.buyArrowPictureBox.TabIndex = 46;
+            this.buyArrowPictureBox.TabStop = false;
             // 
             // priceChart
             // 
@@ -335,7 +337,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.priceChart.Legends.Add(legend1);
-            this.priceChart.Location = new System.Drawing.Point(23, 406);
+            this.priceChart.Location = new System.Drawing.Point(13, 403);
             this.priceChart.Name = "priceChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
@@ -351,11 +353,12 @@
             this.priceChart.Size = new System.Drawing.Size(496, 155);
             this.priceChart.TabIndex = 47;
             this.priceChart.Text = "priceChart";
+            this.priceChart.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 90);
+            this.label5.Location = new System.Drawing.Point(12, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 13);
             this.label5.TabIndex = 48;
@@ -364,7 +367,7 @@
             // buyAmountTextBox
             // 
             this.buyAmountTextBox.AcceptsTab = true;
-            this.buyAmountTextBox.Location = new System.Drawing.Point(78, 87);
+            this.buyAmountTextBox.Location = new System.Drawing.Point(43, 87);
             this.buyAmountTextBox.Name = "buyAmountTextBox";
             this.buyAmountTextBox.Size = new System.Drawing.Size(68, 20);
             this.buyAmountTextBox.TabIndex = 49;
@@ -374,7 +377,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(47, 120);
+            this.label10.Location = new System.Drawing.Point(12, 120);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(24, 13);
             this.label10.TabIndex = 50;
@@ -382,7 +385,7 @@
             // 
             // sellAmountTextBox
             // 
-            this.sellAmountTextBox.Location = new System.Drawing.Point(77, 117);
+            this.sellAmountTextBox.Location = new System.Drawing.Point(42, 117);
             this.sellAmountTextBox.Name = "sellAmountTextBox";
             this.sellAmountTextBox.Size = new System.Drawing.Size(68, 20);
             this.sellAmountTextBox.TabIndex = 51;
@@ -391,7 +394,7 @@
             // 
             // buyAtTextBox
             // 
-            this.buyAtTextBox.Location = new System.Drawing.Point(314, 85);
+            this.buyAtTextBox.Location = new System.Drawing.Point(325, 88);
             this.buyAtTextBox.MaxLength = 12;
             this.buyAtTextBox.Name = "buyAtTextBox";
             this.buyAtTextBox.Size = new System.Drawing.Size(89, 20);
@@ -399,7 +402,7 @@
             // 
             // sellAtTextBox
             // 
-            this.sellAtTextBox.Location = new System.Drawing.Point(313, 119);
+            this.sellAtTextBox.Location = new System.Drawing.Point(324, 119);
             this.sellAtTextBox.MaxLength = 12;
             this.sellAtTextBox.Name = "sellAtTextBox";
             this.sellAtTextBox.Size = new System.Drawing.Size(90, 20);
@@ -408,9 +411,7 @@
             // buyAutoUpdateCheckBox
             // 
             this.buyAutoUpdateCheckBox.AutoSize = true;
-            this.buyAutoUpdateCheckBox.Checked = true;
-            this.buyAutoUpdateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.buyAutoUpdateCheckBox.Location = new System.Drawing.Point(410, 87);
+            this.buyAutoUpdateCheckBox.Location = new System.Drawing.Point(420, 91);
             this.buyAutoUpdateCheckBox.Name = "buyAutoUpdateCheckBox";
             this.buyAutoUpdateCheckBox.Size = new System.Drawing.Size(83, 17);
             this.buyAutoUpdateCheckBox.TabIndex = 54;
@@ -420,9 +421,7 @@
             // sellAutoUpdateCheckBox
             // 
             this.sellAutoUpdateCheckBox.AutoSize = true;
-            this.sellAutoUpdateCheckBox.Checked = true;
-            this.sellAutoUpdateCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sellAutoUpdateCheckBox.Location = new System.Drawing.Point(410, 121);
+            this.sellAutoUpdateCheckBox.Location = new System.Drawing.Point(420, 123);
             this.sellAutoUpdateCheckBox.Name = "sellAutoUpdateCheckBox";
             this.sellAutoUpdateCheckBox.Size = new System.Drawing.Size(83, 17);
             this.sellAutoUpdateCheckBox.TabIndex = 55;
@@ -431,7 +430,7 @@
             // 
             // depthLabel
             // 
-            this.depthLabel.Location = new System.Drawing.Point(330, 58);
+            this.depthLabel.Location = new System.Drawing.Point(321, 57);
             this.depthLabel.Name = "depthLabel";
             this.depthLabel.Size = new System.Drawing.Size(73, 13);
             this.depthLabel.TabIndex = 57;
@@ -440,28 +439,62 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(341, 36);
+            this.label12.Location = new System.Drawing.Point(332, 35);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 13);
             this.label12.TabIndex = 56;
             this.label12.Text = "Depth";
             // 
-            // notationPic2
+            // sellArrowPictureBox
             // 
-            this.notationPic2.Location = new System.Drawing.Point(222, 36);
-            this.notationPic2.Name = "notationPic2";
-            this.notationPic2.Size = new System.Drawing.Size(16, 13);
-            this.notationPic2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.notationPic2.TabIndex = 58;
-            this.notationPic2.TabStop = false;
-            this.notationPic2.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.sellArrowPictureBox.Location = new System.Drawing.Point(213, 35);
+            this.sellArrowPictureBox.Name = "sellArrowPictureBox";
+            this.sellArrowPictureBox.Size = new System.Drawing.Size(16, 13);
+            this.sellArrowPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sellArrowPictureBox.TabIndex = 58;
+            this.sellArrowPictureBox.TabStop = false;
+            this.sellArrowPictureBox.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // buyAtComboBox
+            // 
+            this.buyAtComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.buyAtComboBox.FormattingEnabled = true;
+            this.buyAtComboBox.Items.AddRange(new object[] {
+            "1%",
+            "2%",
+            "3%",
+            "4%",
+            "5%",
+            "10%"});
+            this.buyAtComboBox.Location = new System.Drawing.Point(278, 85);
+            this.buyAtComboBox.Name = "buyAtComboBox";
+            this.buyAtComboBox.Size = new System.Drawing.Size(41, 21);
+            this.buyAtComboBox.TabIndex = 59;
+            // 
+            // sellAtComboBox
+            // 
+            this.sellAtComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sellAtComboBox.FormattingEnabled = true;
+            this.sellAtComboBox.Items.AddRange(new object[] {
+            "1%",
+            "2%",
+            "3%",
+            "4%",
+            "5%",
+            "10%"});
+            this.sellAtComboBox.Location = new System.Drawing.Point(277, 118);
+            this.sellAtComboBox.Name = "sellAtComboBox";
+            this.sellAtComboBox.Size = new System.Drawing.Size(41, 21);
+            this.sellAtComboBox.TabIndex = 60;
             // 
             // Mainpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 562);
-            this.Controls.Add(this.notationPic2);
+            this.ClientSize = new System.Drawing.Size(522, 562);
+            this.Controls.Add(this.sellAtComboBox);
+            this.Controls.Add(this.buyAtComboBox);
+            this.Controls.Add(this.sellArrowPictureBox);
             this.Controls.Add(this.depthLabel);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.sellAutoUpdateCheckBox);
@@ -473,7 +506,7 @@
             this.Controls.Add(this.buyAmountTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.priceChart);
-            this.Controls.Add(this.notationPic1);
+            this.Controls.Add(this.buyArrowPictureBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.balanceLabel);
             this.Controls.Add(this.label6);
@@ -485,7 +518,7 @@
             this.Controls.Add(this.buyatButton);
             this.Controls.Add(this.sellnowButton);
             this.Controls.Add(this.sellPriceLabel);
-            this.Controls.Add(this.buypriceLabel);
+            this.Controls.Add(this.buyPriceLabel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.avgpriceLabel);
@@ -502,9 +535,9 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mainpage_Closed);
             this.Shown += new System.EventHandler(this.Mainpage_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buyArrowPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.notationPic2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sellArrowPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -519,7 +552,7 @@
         private System.Windows.Forms.Button buyatButton;
         private System.Windows.Forms.Button sellnowButton;
         private System.Windows.Forms.Label sellPriceLabel;
-        private System.Windows.Forms.Label buypriceLabel;
+        private System.Windows.Forms.Label buyPriceLabel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label avgpriceLabel;
@@ -538,7 +571,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label balanceLabel;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.PictureBox notationPic1;
+        private System.Windows.Forms.PictureBox buyArrowPictureBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart priceChart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox buyAmountTextBox;
@@ -551,7 +584,9 @@
         private System.Windows.Forms.ColumnHeader orderId;
         private System.Windows.Forms.Label depthLabel;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox notationPic2;
+        private System.Windows.Forms.PictureBox sellArrowPictureBox;
+        private System.Windows.Forms.ComboBox buyAtComboBox;
+        private System.Windows.Forms.ComboBox sellAtComboBox;
 
     }
 }

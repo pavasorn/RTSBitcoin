@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtceApi", "BtceApi\BtceApi.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTest", "ApiTest\ApiTest.csproj", "{948B9B9B-8CED-4A3D-AF73-A8147AF93B26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTSBitcoinProjectTest", "UnitTestProject1\RTSBitcoinProjectTest.csproj", "{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,18 @@ Global
 		{948B9B9B-8CED-4A3D-AF73-A8147AF93B26}.Release|X64.ActiveCfg = Release|x86
 		{948B9B9B-8CED-4A3D-AF73-A8147AF93B26}.Release|x86.ActiveCfg = Release|x86
 		{948B9B9B-8CED-4A3D-AF73-A8147AF93B26}.Release|x86.Build.0 = Release|x86
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Debug|X64.ActiveCfg = Debug|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Release|X64.ActiveCfg = Release|Any CPU
+		{BF2B02D5-CFC6-4B68-9BAE-BCB7C86D3720}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

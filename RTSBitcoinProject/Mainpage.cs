@@ -10,7 +10,6 @@ namespace RTSBitcoinProject
         #region Not implemented functions
         // chart functions
         //UpdatePriceChart();
-        
         #endregion
 
         #region Initialisation
@@ -54,29 +53,59 @@ namespace RTSBitcoinProject
         {
             _pair = currencyComboBox.SelectedItem.ToString();
             _ticker = _control.UpdatePrices(_pair);
+
+            decimal oldTradePrice;
             
+            decimal.TryParse(buyPriceLabel.Text, NumberStyles.Any, _culture, out oldTradePrice);
+            buyPriceLabel.Text = _ticker.Buy.ToString(_culture);
+            if (oldTradePrice!=0) UpdateArrow(oldTradePrice, _ticker.Buy, buyArrowPictureBox);
+
+            decimal.TryParse(sellPriceLabel.Text, NumberStyles.Any, _culture, out oldTradePrice);
+            sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
+            if (oldTradePrice != 0) UpdateArrow(oldTradePrice, _ticker.Sell, sellArrowPictureBox);
+            
+            depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
+
             highpriceLabel.Text = _ticker.High.ToString(_culture);
             avgpriceLabel.Text = _ticker.Average.ToString(_culture);
             lowpriceLabel.Text = _ticker.Low.ToString(_culture);
-            depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
-            if (buypriceLabel.Text != "<buypriceLabel>")
-            {
-                updateArrow(Convert.ToDouble(buypriceLabel.Text),Convert.ToDouble(_ticker.Buy),notationPic1);
-            }
-           
-            buypriceLabel.Text = _ticker.Buy.ToString(_culture);
-            if (sellPriceLabel.Text != "<sellpriceLabel>")
-            {
-                updateArrow(Convert.ToDouble(sellPriceLabel.Text), Convert.ToDouble(_ticker.Sell), notationPic2);
-            }
-            sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
-
-            if (!buyAutoUpdateCheckBox.Checked) return;
-            buyAtTextBox.Text = (_ticker.Buy * 0.99m).ToString(_culture);
-
-            if (!sellAutoUpdateCheckBox.Checked) return;
-            sellAtTextBox.Text = (_ticker.Sell * 1.02m).ToString(_culture);
+            
+            UpdateTradeAtComboBox();
         }
+
+        private void UpdateTradeAtComboBox()
+        {
+            decimal percentage;
+            
+            if (buyAutoUpdateCheckBox.Checked && buyAtComboBox.SelectedItem!=null)
+            {
+                switch (buyAtComboBox.SelectedItem.ToString())
+                {
+                    case "1%": percentage = 0.99m; break;
+                    case "2%": percentage = 0.98m; break;
+                    case "3%": percentage = 0.97m; break;
+                    case "4%": percentage = 0.96m; break;
+                    case "5%": percentage = 0.95m; break;
+                    case "10%": percentage = 0.90m; break;
+                    default: percentage = 1m; break;
+                }
+                buyAtTextBox.Text = (_ticker.Buy * percentage).ToString(_culture);
+            }
+
+            if (!sellAutoUpdateCheckBox.Checked || sellAtComboBox.SelectedItem==null) return;
+
+            switch (sellAtComboBox.SelectedItem.ToString())
+            {
+                case "1%": percentage = 1.01m; break;
+                case "2%": percentage = 1.02m; break;
+                case "3%": percentage = 1.03m; break;
+                case "4%": percentage = 1.04m; break;
+                case "5%": percentage = 1.05m; break;
+                case "10%": percentage = 1.1m; break;
+                default: percentage = 1m; break;
+            }
+            sellAtTextBox.Text = (_ticker.Sell * percentage).ToString(_culture);
+        }  
 
         private void UpdatePriceChart()
         {
@@ -180,7 +209,7 @@ namespace RTSBitcoinProject
         {
             try
             {
-                var operationPrice = Decimal.Parse(buypriceLabel.Text,_culture);
+                var operationPrice = Decimal.Parse(buyPriceLabel.Text,_culture);
                 var operationAmount = Decimal.Parse(buyAmountTextBox.Text, _culture);
 
                 var tradeAnswer = _control.Buy(_pair, operationPrice, operationAmount);
@@ -274,17 +303,13 @@ namespace RTSBitcoinProject
         {
             UpdatePriceChart();
         }
-        private void updateArrow(double val1, double val2 , PictureBox pictureBox)
+        private static void UpdateArrow(decimal val1, decimal val2 , PictureBox pictureBox)
         {
             if (val1 < val2)
-            {
                 pictureBox.Image = Properties.Resources.greenArrow;
-            }
-            else if (val1 == val2){}
-            else
-            {
-                pictureBox.Image = Properties.Resources.redArrow;
-            }
+            else 
+                if (val1 > val2) 
+                    pictureBox.Image = Properties.Resources.redArrow;
         }
     }
 }
