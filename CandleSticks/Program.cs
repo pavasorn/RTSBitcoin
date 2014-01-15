@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace xmlTesting
+namespace CandleSticks
 {
     class Program
     {
