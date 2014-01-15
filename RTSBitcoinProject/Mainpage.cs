@@ -297,19 +297,21 @@ namespace RTSBitcoinProject
         {
             MessageBox.Show(@"Transaction performed successfully");
         }
+
+        private static void UpdateArrow(decimal val1, decimal val2, PictureBox pictureBox)
+        {
+            if (val1 < val2)
+                pictureBox.Image = Properties.Resources.greenArrow;
+            else
+                if (val1 > val2)
+                    pictureBox.Image = Properties.Resources.redArrow;
+        }
         #endregion
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             UpdatePriceChart();
         }
-        private static void UpdateArrow(decimal val1, decimal val2 , PictureBox pictureBox)
-        {
-            if (val1 < val2)
-                pictureBox.Image = Properties.Resources.greenArrow;
-            else 
-                if (val1 > val2) 
-                    pictureBox.Image = Properties.Resources.redArrow;
-        }
+
     }
 }
