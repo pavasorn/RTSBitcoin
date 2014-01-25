@@ -62,8 +62,8 @@ namespace CandleSticks
         }
         public void cleanElement()
         {
-            //hallo
             XmlDocument doc = new XmlDocument();
+
             doc.Load("Trades.xml");
             XmlNode root = doc.DocumentElement;
             int index = CountElement();
