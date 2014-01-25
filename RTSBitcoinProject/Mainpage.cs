@@ -131,7 +131,7 @@ namespace RTSBitcoinProject
             if (clean == false)
             {
                 var cleanchart = new XmlForCandleSticks();
-                cleanchart.cleanElement();
+                cleanchart.CleanElement();
                 clean = true;
             }
             if (this.highValue == -1 && lowValue == -1)
@@ -160,7 +160,7 @@ namespace RTSBitcoinProject
             priceChart.ChartAreas[0].AxisY.Maximum = highest + 0.5;
 
             var chart = new XmlForCandleSticks();
-            List<priceData> priceChartValues;
+            List<PriceData> priceChartValues;
             try
             {
                 try
@@ -200,7 +200,7 @@ namespace RTSBitcoinProject
         {
 
             var chart = new XmlForCandleSticks();
-            List<priceData> priceChartValues;
+            List<PriceData> priceChartValues;
             if (highValue == -1 && lowValue == -1)
             {
                 highValue = double.Parse(_ticker.Buy.ToString());
