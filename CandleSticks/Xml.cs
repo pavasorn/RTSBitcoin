@@ -1,11 +1,9 @@
-﻿using System;
-using System.Xml;
-using System.Collections;
+﻿using System.Xml;
 using System.Collections.Generic;
 
 namespace CandleSticks
 {
-    public class priceData
+    public class PriceData
     {
         public string date { get;  set; }
         public string time { get;  set; }
@@ -19,7 +17,7 @@ namespace CandleSticks
     {
         public void CreateXML(string date,string time,string start,string end,string high,string low)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
+            var settings = new XmlWriterSettings();
             settings.Indent = true;
             // entry value, highest value, lowest, and end value
             XmlWriter writer = XmlWriter.Create("Trades.xml", settings);
@@ -60,7 +58,7 @@ namespace CandleSticks
             root.RemoveChild(node);
             doc.Save("Trades.xml");
         }
-        public void cleanElement()
+        public void CleanElement()
         {
             XmlDocument doc = new XmlDocument();
 
@@ -76,11 +74,11 @@ namespace CandleSticks
         }
         public void AddElement(string date, string time, string start, string end, string high, string low)
         {
-            XmlDocument doc = new XmlDocument();
+            var doc = new XmlDocument();
             doc.Load("Trades.xml");
-            XmlNode newNode = doc.CreateNode(XmlNodeType.Element, "trade", null);
+            var newNode = doc.CreateNode(XmlNodeType.Element, "trade", null);
 
-            XmlAttribute att = doc.CreateAttribute("date");
+            var att = doc.CreateAttribute("date");
             att.Value = date;
             newNode.Attributes.Append(att);
             att = doc.CreateAttribute("time");
@@ -105,11 +103,11 @@ namespace CandleSticks
         }
         public void EditElement(int index, string date, string time, string start, string end, string high, string low )
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            var xmlDoc = new XmlDocument();
 
             xmlDoc.Load("Trades.xml");
             XmlNode root = xmlDoc.DocumentElement;
-            XmlNode myNode = root.SelectNodes("trade").Item(index);
+            var myNode = root.SelectNodes("trade").Item(index);
             myNode.Attributes[0].Value = date;
             myNode.Attributes[1].Value = time;
             myNode.Attributes[2].Value = start;
@@ -120,26 +118,25 @@ namespace CandleSticks
 
         }
 
-        public List<priceData> ReadAllElements()
+        public List<PriceData> ReadAllElements()
         {
-            List<priceData> pricesList = new List<priceData>();
+            var pricesList = new List<PriceData>();
             
 
-            XmlReader reader = XmlReader.Create("Trades.xml");
+            var reader = XmlReader.Create("Trades.xml");
             while (reader.Read())
             {
-                if (reader.NodeType == XmlNodeType.Element && reader.Name == "trade")
+                if (reader.NodeType != XmlNodeType.Element || reader.Name != "trade") continue;
+                var prices = new PriceData
                 {
-                    priceData prices = new priceData();
-                    prices.date = reader.GetAttribute(0);
-                    prices.time = reader.GetAttribute(1);
-                    prices.start = reader.GetAttribute(2);
-                    prices.end = reader.GetAttribute(3);
-                    prices.high = reader.GetAttribute(4);
-                    prices.low = reader.GetAttribute(5);
-                    pricesList.Add(prices);
-                }
-                
+                    date = reader.GetAttribute(0),
+                    time = reader.GetAttribute(1),
+                    start = reader.GetAttribute(2),
+                    end = reader.GetAttribute(3),
+                    high = reader.GetAttribute(4),
+                    low = reader.GetAttribute(5)
+                };
+                pricesList.Add(prices);
             }
             reader.Close();
             return pricesList;
