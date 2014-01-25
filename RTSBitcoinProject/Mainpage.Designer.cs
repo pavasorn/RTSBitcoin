@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buynowButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.currencyComboBox = new System.Windows.Forms.ComboBox();
@@ -276,7 +276,7 @@
             // 
             // UpdatePricesTimer
             // 
-            this.UpdatePricesTimer.Interval = 3000;
+            this.UpdatePricesTimer.Interval = 10000;
             this.UpdatePricesTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label6
@@ -323,37 +323,36 @@
             this.priceChart.BackImageTransparentColor = System.Drawing.Color.Black;
             this.priceChart.BackSecondaryColor = System.Drawing.Color.Black;
             this.priceChart.BorderlineColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
-            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.BackImageTransparentColor = System.Drawing.Color.White;
-            chartArea1.BackSecondaryColor = System.Drawing.Color.White;
-            chartArea1.BorderColor = System.Drawing.Color.DimGray;
-            chartArea1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea1.Name = "ChartArea1";
-            this.priceChart.ChartAreas.Add(chartArea1);
-            legend1.BorderColor = System.Drawing.Color.Black;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.priceChart.Legends.Add(legend1);
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gray;
+            chartArea3.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDot;
+            chartArea3.BackColor = System.Drawing.Color.Black;
+            chartArea3.BackImageTransparentColor = System.Drawing.Color.White;
+            chartArea3.BackSecondaryColor = System.Drawing.Color.White;
+            chartArea3.BorderColor = System.Drawing.Color.DimGray;
+            chartArea3.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea3.Name = "ChartArea1";
+            this.priceChart.ChartAreas.Add(chartArea3);
+            legend3.BorderColor = System.Drawing.Color.Black;
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.priceChart.Legends.Add(legend3);
             this.priceChart.Location = new System.Drawing.Point(13, 403);
             this.priceChart.Name = "priceChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
-            series1.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
-            series1.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
-            series1.Legend = "Legend1";
-            series1.MarkerBorderColor = System.Drawing.Color.Navy;
-            series1.MarkerColor = System.Drawing.Color.DarkBlue;
-            series1.MarkerImageTransparentColor = System.Drawing.Color.White;
-            series1.Name = "price";
-            series1.YValuesPerPoint = 4;
-            this.priceChart.Series.Add(series1);
-            this.priceChart.Size = new System.Drawing.Size(496, 155);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Candlestick;
+            series3.CustomProperties = "LabelValueType=Open, PriceDownColor=Red, PriceUpColor=Lime";
+            series3.EmptyPointStyle.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Triangle;
+            series3.Legend = "Legend1";
+            series3.MarkerBorderColor = System.Drawing.Color.Navy;
+            series3.MarkerColor = System.Drawing.Color.DarkBlue;
+            series3.MarkerImageTransparentColor = System.Drawing.Color.White;
+            series3.Name = "price";
+            series3.YValuesPerPoint = 4;
+            this.priceChart.Series.Add(series3);
+            this.priceChart.Size = new System.Drawing.Size(496, 247);
             this.priceChart.TabIndex = 47;
             this.priceChart.Text = "priceChart";
-            this.priceChart.Visible = false;
             // 
             // label5
             // 
@@ -491,7 +490,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 562);
+            this.ClientSize = new System.Drawing.Size(522, 662);
             this.Controls.Add(this.sellAtComboBox);
             this.Controls.Add(this.buyAtComboBox);
             this.Controls.Add(this.sellArrowPictureBox);
@@ -528,8 +527,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(750, 600);
-            this.MinimumSize = new System.Drawing.Size(500, 600);
+            this.MaximumSize = new System.Drawing.Size(750, 700);
+            this.MinimumSize = new System.Drawing.Size(500, 700);
             this.Name = "Mainpage";
             this.Text = "Mainpage";
             this.TopMost = true;

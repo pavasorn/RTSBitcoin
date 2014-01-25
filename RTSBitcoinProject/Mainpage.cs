@@ -2,15 +2,14 @@
 using System.Globalization;
 using System.Windows.Forms;
 using BtcE;
+using CandleSticks;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace RTSBitcoinProject
 {
     public partial class Mainpage : Form
     {
-        #region Not implemented functions
-        // chart functions
-        //UpdatePriceChart();
-        #endregion
 
         #region Initialisation
         readonly CultureInfo _culture = CultureInfo.InvariantCulture;
@@ -18,11 +17,29 @@ namespace RTSBitcoinProject
         private ListViewItem _selectedItem;
         private Ticker _ticker;
         private string _pair;
-
+        private double highValue = -1 ;
+        private double lowValue = -1;
+        private double startValue = -1;
+        private double endValue = -1;
+        private double highest = -1;
+        private double lowest = -1;
+        private bool clean = false;
         public Mainpage()
         {
+            var timer = new Timer();
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = 300000; //60 seconds
+            timer.Start();
+
             InitializeComponent();
             orderListview.FullRowSelect = true;
+            
+           
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            UpdatePriceChart();
+            resetHighandLow();
         }
         #endregion
 
@@ -51,6 +68,7 @@ namespace RTSBitcoinProject
 
         private void UpdatePrices()
         {
+            
             _pair = currencyComboBox.SelectedItem.ToString();
             _ticker = _control.UpdatePrices(_pair);
 
@@ -64,13 +82,14 @@ namespace RTSBitcoinProject
             sellPriceLabel.Text = _ticker.Sell.ToString(_culture);
             if (oldTradePrice != 0) UpdateArrow(oldTradePrice, _ticker.Sell, sellArrowPictureBox);
             
+            
+            UpdateDynamicStick();
             depthLabel.Text = _ticker.VolumeCurrent.ToString(_culture);
 
             highpriceLabel.Text = _ticker.High.ToString(_culture);
             avgpriceLabel.Text = _ticker.Average.ToString(_culture);
             lowpriceLabel.Text = _ticker.Low.ToString(_culture);
             
-            UpdateTradeAtComboBox();
         }
 
         private void UpdateTradeAtComboBox()
@@ -105,45 +124,133 @@ namespace RTSBitcoinProject
                 default: percentage = 1m; break;
             }
             sellAtTextBox.Text = (_ticker.Sell * percentage).ToString(_culture);
-        }  
+        }
 
+        private void UpdateDynamicStick()
+        {
+            if (clean == false)
+            {
+                var cleanchart = new XmlForCandleSticks();
+                cleanchart.cleanElement();
+                clean = true;
+            }
+            if (this.highValue == -1 && lowValue == -1)
+            {
+                highValue = double.Parse(_ticker.Buy.ToString());
+                lowValue = double.Parse(_ticker.Buy.ToString());
+                startValue = double.Parse(_ticker.Buy.ToString());
+                endValue = double.Parse(_ticker.Buy.ToString());
+            }
+            if (this.highest == -1 && lowest == -1)
+            {
+                highest = double.Parse(_ticker.Buy.ToString());
+                lowest = double.Parse(_ticker.Buy.ToString());
+            }
+            if (updateHigh(double.Parse(_ticker.Buy.ToString())))
+            {
+                this.highValue = double.Parse(_ticker.Buy.ToString());
+            }
+            if (updateLow(double.Parse(_ticker.Buy.ToString())))
+            {
+                this.lowValue = double.Parse(_ticker.Buy.ToString());
+            }
+            this.endValue = double.Parse(_ticker.Buy.ToString());
+
+            priceChart.ChartAreas[0].AxisY.Minimum = lowest - 0.5;
+            priceChart.ChartAreas[0].AxisY.Maximum = highest + 0.5;
+
+            var chart = new XmlForCandleSticks();
+            List<priceData> priceChartValues;
+            try
+            {
+                try
+                {
+                    priceChartValues = chart.ReadAllElements();
+                    priceChart.Series["price"].Points[priceChartValues.Count].SetValueXY(DateTime.Now.ToString("HH:mm:ss tt"), highValue);
+                    priceChart.Series["price"].Points[priceChartValues.Count].YValues[1] = lowValue;
+                    priceChart.Series["price"].Points[priceChartValues.Count].YValues[3] = endValue;
+                }
+                catch (Exception e)
+                {
+                    priceChartValues = chart.ReadAllElements();
+                    priceChart.Series["price"].Points.AddXY(DateTime.Now.ToString("HH:mm:ss tt"), _ticker.Buy.ToString());
+                    priceChart.Series["price"].Points[priceChartValues.Count].YValues[1] = double.Parse(_ticker.Buy.ToString());
+                    priceChart.Series["price"].Points[priceChartValues.Count].YValues[2] = double.Parse(_ticker.Buy.ToString());
+                    priceChart.Series["price"].Points[priceChartValues.Count].YValues[3] = double.Parse(_ticker.Buy.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                priceChartValues = chart.ReadAllElements();
+                priceChart.Series["price"].Points.Clear();
+
+                priceChart.ChartAreas[0].AxisY.Minimum = lowest - 0.5;
+                priceChart.ChartAreas[0].AxisY.Maximum = highest + 0.5;
+
+                for (int count = 0; count < priceChartValues.Count; count++)
+                {
+                    priceChart.Series["price"].Points.AddXY(priceChartValues[count].time, priceChartValues[count].high);
+                    priceChart.Series["price"].Points[count].YValues[1] = double.Parse(priceChartValues[count].low);
+                    priceChart.Series["price"].Points[count].YValues[2] = double.Parse(priceChartValues[count].start);
+                    priceChart.Series["price"].Points[count].YValues[3] = double.Parse(priceChartValues[count].end);
+                }
+            }
+        }
         private void UpdatePriceChart()
         {
-            // adding date and high
-            priceChart.Series["price"].Points.AddXY(1, 10f);
-            // adding low
-            priceChart.Series["price"].Points[0].YValues[1] = 8f;
-            //adding open
-            priceChart.Series["price"].Points[0].YValues[2] = 9f;
-            // adding close
-            priceChart.Series["price"].Points[0].YValues[3] = 9.5f;
 
-            // adding date and high
-            priceChart.Series["price"].Points.AddXY(2, 10f);
-            // adding low
-            priceChart.Series["price"].Points[1].YValues[1] = 8f;
-            //adding open
-            priceChart.Series["price"].Points[1].YValues[2] = 9.5f;
-            // adding close
-            priceChart.Series["price"].Points[1].YValues[3] = 9f;
+            var chart = new XmlForCandleSticks();
+            List<priceData> priceChartValues;
+            if (highValue == -1 && lowValue == -1)
+            {
+                highValue = double.Parse(_ticker.Buy.ToString());
+                lowValue = double.Parse(_ticker.Buy.ToString());
+                startValue = double.Parse(_ticker.Buy.ToString());
+                endValue = double.Parse(_ticker.Buy.ToString());
+            }
 
-            // adding date and high
-            priceChart.Series["price"].Points.AddXY(3, 20f);
-            // adding low
-            priceChart.Series["price"].Points[2].YValues[1] = 18f;
-            //adding open
-            priceChart.Series["price"].Points[2].YValues[2] = 19.5f;
-            // adding close
-            priceChart.Series["price"].Points[2].YValues[3] = 19f;
+            if (updateHigh(double.Parse(_ticker.Buy.ToString())))
+            {
+                this.highValue = double.Parse(_ticker.Buy.ToString());
+            }
+            if (updateLow(double.Parse(_ticker.Buy.ToString())))
+            {
+                this.lowValue = double.Parse(_ticker.Buy.ToString());
+            }
+            this.endValue = double.Parse(_ticker.Buy.ToString());
+            UpdateDynamicStick();
+            try
+            {
+                priceChartValues = chart.ReadAllElements();   
+                if (chart.CountElement() != 10)
+                {
+                    chart.AddElement(DateTime.Now.ToString("M/d/yyyy"), DateTime.Now.ToString("HH:mm:ss tt"),startValue.ToString(),endValue.ToString(),highValue.ToString(),lowValue.ToString());
+                }
+                else
+                {
+                    chart.DeleteElement(0);
+                    chart.AddElement(DateTime.Now.ToString("M/d/yyyy"), DateTime.Now.ToString("HH:mm:ss tt"), startValue.ToString(), endValue.ToString(), highValue.ToString(), lowValue.ToString());
+                }
+                priceChart.Series["price"].Points.Clear();
+            }
+            catch (Exception e)
+            {
+            }
 
-            // adding date and high
-            priceChart.Series["price"].Points.AddXY(4, 30f);
-            // adding low
-            priceChart.Series["price"].Points[3].YValues[1] = 10f;
-            //adding open
-            priceChart.Series["price"].Points[3].YValues[2] = 25.5f;
-            // adding close
-            priceChart.Series["price"].Points[3].YValues[3] = 13f;
+            priceChartValues = chart.ReadAllElements(); 
+            priceChart.ChartAreas[0].AxisY.Minimum = lowest - 0.5;
+            priceChart.ChartAreas[0].AxisY.Maximum = highest + 0.5;
+            int count = 0;
+            for (count = 0 ; count < priceChartValues.Count; count++){
+                priceChart.Series["price"].Points.AddXY(priceChartValues[count].time, priceChartValues[count].high);
+                priceChart.Series["price"].Points[count].YValues[1] = double.Parse(priceChartValues[count].low);
+                priceChart.Series["price"].Points[count].YValues[2] = double.Parse(priceChartValues[count].start);
+                priceChart.Series["price"].Points[count].YValues[3] = double.Parse(priceChartValues[count].end);
+            }
+            priceChart.Series["price"].Points.AddXY(DateTime.Now.ToString("HH:mm:ss tt"), _ticker.Buy.ToString());
+            priceChart.Series["price"].Points[count].YValues[1] = double.Parse(_ticker.Buy.ToString());
+            priceChart.Series["price"].Points[count].YValues[2] = double.Parse(_ticker.Buy.ToString());
+            priceChart.Series["price"].Points[count].YValues[3] = double.Parse(_ticker.Buy.ToString());
         }
         #endregion
 
@@ -283,6 +390,36 @@ namespace RTSBitcoinProject
         #endregion
 
         #region Tools
+        private bool updateHigh(double value)
+        {
+            if (this.highValue < value)
+            {
+                this.highValue = value;
+                if(highValue > highest){
+                    highest = highValue;
+                }
+                return true;
+            }
+            return false;
+        }
+        private bool updateLow(double value)
+        {
+            if (this.lowValue > value)
+            {
+                this.lowValue = value;
+                if (lowest > lowValue)
+                {
+                    lowest = lowValue;
+                }
+                return true;
+            }
+            return false;
+        }
+        private void resetHighandLow()
+        {
+            this.highValue = -1;
+            this.lowValue = -1;
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             UpdatePrices();
