@@ -17,13 +17,13 @@ namespace RTSBitcoinProject
         private ListViewItem _selectedItem;
         private Ticker _ticker;
         private string _pair;
-        private double highValue = -1 ;
-        private double lowValue = -1;
-        private double startValue = -1;
-        private double endValue = -1;
-        private double highest = -1;
-        private double lowest = -1;
-        private bool clean = false;
+        private double _highValue = -1 ;
+        private double _lowValue = -1;
+        private double _startValue = -1;
+        private double _endValue = -1;
+        private double _highest = -1;
+        private double _lowest = -1;
+        private bool _clean;
         public Mainpage()
         {
             var timer = new Timer();
@@ -33,8 +33,6 @@ namespace RTSBitcoinProject
 
             InitializeComponent();
             orderListview.FullRowSelect = true;
-            
-           
         }
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -128,46 +126,46 @@ namespace RTSBitcoinProject
 
         private void UpdateDynamicStick()
         {
-            if (clean == false)
+            if (_clean == false)
             {
                 var cleanchart = new XmlForCandleSticks();
                 cleanchart.CleanElement();
-                clean = true;
+                _clean = true;
             }
-            if (this.highValue == -1 && lowValue == -1)
+            if (this._highValue == -1 && _lowValue == -1)
             {
-                highValue = double.Parse(_ticker.Buy.ToString());
-                lowValue = double.Parse(_ticker.Buy.ToString());
-                startValue = double.Parse(_ticker.Buy.ToString());
-                endValue = double.Parse(_ticker.Buy.ToString());
+                _highValue = double.Parse(_ticker.Buy.ToString());
+                _lowValue = double.Parse(_ticker.Buy.ToString());
+                _startValue = double.Parse(_ticker.Buy.ToString());
+                _endValue = double.Parse(_ticker.Buy.ToString());
             }
-            if (this.highest == -1 && lowest == -1)
+            if (this._highest == -1 && _lowest == -1)
             {
-                highest = double.Parse(_ticker.Buy.ToString());
-                lowest = double.Parse(_ticker.Buy.ToString());
+                _highest = double.Parse(_ticker.Buy.ToString());
+                _lowest = double.Parse(_ticker.Buy.ToString());
             }
             if (updateHigh(double.Parse(_ticker.Buy.ToString())))
             {
-                this.highValue = double.Parse(_ticker.Buy.ToString());
+                this._highValue = double.Parse(_ticker.Buy.ToString());
             }
             if (updateLow(double.Parse(_ticker.Buy.ToString())))
             {
-                this.lowValue = double.Parse(_ticker.Buy.ToString());
+                this._lowValue = double.Parse(_ticker.Buy.ToString());
             }
-            this.endValue = double.Parse(_ticker.Buy.ToString());
+            this._endValue = double.Parse(_ticker.Buy.ToString());
 
             
 
             var chart = new XmlForCandleSticks();
             try
             {
-                priceChart.ChartAreas[0].AxisY.Minimum = lowest - 0.5;
-                priceChart.ChartAreas[0].AxisY.Maximum = highest + 0.5;
+                priceChart.ChartAreas[0].AxisY.Minimum = _lowest - 0.5;
+                priceChart.ChartAreas[0].AxisY.Maximum = _highest + 0.5;
                 try
                 {
-                    priceChart.Series["price"].Points[29].SetValueXY(DateTime.Now.ToString("HH:mm:ss tt"), highValue);
-                    priceChart.Series["price"].Points[29].YValues[1] = lowValue;
-                    priceChart.Series["price"].Points[29].YValues[3] = endValue;
+                    priceChart.Series["price"].Points[29].SetValueXY(DateTime.Now.ToString("HH:mm:ss tt"), _highValue);
+                    priceChart.Series["price"].Points[29].YValues[1] = _lowValue;
+                    priceChart.Series["price"].Points[29].YValues[3] = _endValue;
                 }
                 catch (Exception)
                 {
@@ -191,23 +189,23 @@ namespace RTSBitcoinProject
 
             var chart = new XmlForCandleSticks();
             List<PriceData> priceChartValues;
-            if (highValue == -1 && lowValue == -1)
+            if (_highValue == -1 && _lowValue == -1)
             {
-                highValue = double.Parse(_ticker.Buy.ToString());
-                lowValue = double.Parse(_ticker.Buy.ToString());
-                startValue = double.Parse(_ticker.Buy.ToString());
-                endValue = double.Parse(_ticker.Buy.ToString());
+                _highValue = double.Parse(_ticker.Buy.ToString());
+                _lowValue = double.Parse(_ticker.Buy.ToString());
+                _startValue = double.Parse(_ticker.Buy.ToString());
+                _endValue = double.Parse(_ticker.Buy.ToString());
             }
 
             if (updateHigh(double.Parse(_ticker.Buy.ToString())))
             {
-                this.highValue = double.Parse(_ticker.Buy.ToString());
+                this._highValue = double.Parse(_ticker.Buy.ToString());
             }
             if (updateLow(double.Parse(_ticker.Buy.ToString())))
             {
-                this.lowValue = double.Parse(_ticker.Buy.ToString());
+                this._lowValue = double.Parse(_ticker.Buy.ToString());
             }
-            this.endValue = double.Parse(_ticker.Buy.ToString());
+            this._endValue = double.Parse(_ticker.Buy.ToString());
             UpdateDynamicStick();
             try
             {
@@ -218,16 +216,16 @@ namespace RTSBitcoinProject
                     {
                         chart.AddElement("", "00:00:00 AM", "0", "0", "0", "0");
                     }
-                    chart.AddElement(DateTime.Now.ToString("M/d/yyyy"), DateTime.Now.ToString("HH:mm:ss tt"),startValue.ToString(),endValue.ToString(),highValue.ToString(),lowValue.ToString());
+                    chart.AddElement(DateTime.Now.ToString("M/d/yyyy"), DateTime.Now.ToString("HH:mm:ss tt"),_startValue.ToString(),_endValue.ToString(),_highValue.ToString(),_lowValue.ToString());
                 }
                 else
                 {
                     chart.DeleteElement(0);
-                    chart.AddElement(DateTime.Now.ToString("M/d/yyyy"), DateTime.Now.ToString("HH:mm:ss tt"), startValue.ToString(), endValue.ToString(), highValue.ToString(), lowValue.ToString());
+                    chart.AddElement(DateTime.Now.ToString("M/d/yyyy"), DateTime.Now.ToString("HH:mm:ss tt"), _startValue.ToString(), _endValue.ToString(), _highValue.ToString(), _lowValue.ToString());
                 }
                 priceChart.Series["price"].Points.Clear();
-                priceChart.ChartAreas[0].AxisY.Minimum = lowest - 0.5;
-                priceChart.ChartAreas[0].AxisY.Maximum = highest + 0.5;
+                priceChart.ChartAreas[0].AxisY.Minimum = _lowest - 0.5;
+                priceChart.ChartAreas[0].AxisY.Maximum = _highest + 0.5;
             }
             catch (Exception)
             {
@@ -389,11 +387,11 @@ namespace RTSBitcoinProject
         #region Tools
         private bool updateHigh(double value)
         {
-            if (this.highValue < value)
+            if (this._highValue < value)
             {
-                this.highValue = value;
-                if(highValue > highest){
-                    highest = highValue;
+                this._highValue = value;
+                if(_highValue > _highest){
+                    _highest = _highValue;
                 }
                 return true;
             }
@@ -401,12 +399,12 @@ namespace RTSBitcoinProject
         }
         private bool updateLow(double value)
         {
-            if (this.lowValue > value)
+            if (this._lowValue > value)
             {
-                this.lowValue = value;
-                if (lowest > lowValue)
+                this._lowValue = value;
+                if (_lowest > _lowValue)
                 {
-                    lowest = lowValue;
+                    _lowest = _lowValue;
                 }
                 return true;
             }
@@ -414,8 +412,8 @@ namespace RTSBitcoinProject
         }
         private void resetHighandLow()
         {
-            this.highValue = -1;
-            this.lowValue = -1;
+            this._highValue = -1;
+            this._lowValue = -1;
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
