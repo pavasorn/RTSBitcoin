@@ -237,6 +237,7 @@ namespace RTSBitcoinProject
 
             for (int count = 0; count < priceChartValues.Count; count++)
             {
+
                 priceChart.Series["price"].Points.AddXY(priceChartValues[count].time, priceChartValues[count].high);
                 priceChart.Series["price"].Points[count].YValues[1] = double.Parse(priceChartValues[count].low);
                 priceChart.Series["price"].Points[count].YValues[2] = double.Parse(priceChartValues[count].start);
