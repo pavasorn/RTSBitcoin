@@ -27,8 +27,8 @@ namespace RTSBitcoinProject
         public Mainpage()
         {
             var timer = new Timer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = 120000; //60 seconds
+            timer.Tick += timer_Tick;
+            timer.Interval = 10000; //60 seconds
             timer.Start();
 
             InitializeComponent();
@@ -178,7 +178,7 @@ namespace RTSBitcoinProject
                         priceChart.Series["price"].Points[count].YValues[2] = 0;
                         priceChart.Series["price"].Points[count].YValues[3] = 0;
                     }
-                    priceChart.Series["price"].Points.AddXY(DateTime.Now.ToString("HH:mm:ss tt"), _ticker.Buy.ToString());
+                    priceChart.Series["price"].Points.AddXY(DateTime.Now.ToString("HH:mm:ss tt"), double.Parse(_ticker.Buy.ToString()));
                     priceChart.Series["price"].Points[29].YValues[1] = double.Parse(_ticker.Buy.ToString());
                     priceChart.Series["price"].Points[29].YValues[2] = double.Parse(_ticker.Buy.ToString());
                     priceChart.Series["price"].Points[29].YValues[3] = double.Parse(_ticker.Buy.ToString());
@@ -238,12 +238,12 @@ namespace RTSBitcoinProject
             for (int count = 0; count < priceChartValues.Count; count++)
             {
 
-                priceChart.Series["price"].Points.AddXY(priceChartValues[count].time, priceChartValues[count].high);
+                priceChart.Series["price"].Points.AddXY(priceChartValues[count].time,double.Parse( priceChartValues[count].high));
                 priceChart.Series["price"].Points[count].YValues[1] = double.Parse(priceChartValues[count].low);
                 priceChart.Series["price"].Points[count].YValues[2] = double.Parse(priceChartValues[count].start);
                 priceChart.Series["price"].Points[count].YValues[3] = double.Parse(priceChartValues[count].end);
             }
-            priceChart.Series["price"].Points.AddXY(DateTime.Now.ToString("HH:mm:ss tt"), _ticker.Buy.ToString());
+            priceChart.Series["price"].Points.AddXY(DateTime.Now.ToString("HH:mm:ss tt"),double.Parse( _ticker.Buy.ToString()));
             priceChart.Series["price"].Points[29].YValues[1] = double.Parse(_ticker.Buy.ToString());
             priceChart.Series["price"].Points[29].YValues[2] = double.Parse(_ticker.Buy.ToString());
             priceChart.Series["price"].Points[29].YValues[3] = double.Parse(_ticker.Buy.ToString());

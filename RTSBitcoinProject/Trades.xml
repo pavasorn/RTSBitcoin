@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<trades>
+  <trade date="1/26/2014" time="04:43:00 AM" start="21.929989" end="21.929585" high="21.929989" low="21.929585" />
+  <trade date="1/26/2014" time="04:45:00 AM" start="21.929483" end="21.909889" high="21.929587" low="21.909889" />
+  <trade date="1/26/2014" time="04:47:00 AM" start="21.9" end="21.891883" high="21.9" low="21.891481" />
+  <trade date="1/26/2014" time="04:49:00 AM" start="21.891883" end="21.73947" high="21.891883" low="21.73947" />
+  <trade date="1/26/2014" time="04:51:00 AM" start="21.73947" end="21.73947" high="21.73947" low="21.736915" />
+  <trade date="1/26/2014" time="04:53:00 AM" start="21.73947" end="21.83752" high="21.857" low="21.73947" />
+  <trade date="1/26/2014" time="04:55:00 AM" start="21.83756" end="21.84992" high="21.84998" low="21.837" />
+  <trade date="1/26/2014" time="04:57:00 AM" start="21.8499" end="21.8" high="21.874959" low="21.8" />
+  <trade date="1/26/2014" time="04:59:00 AM" start="21.8" end="21.799999" high="21.8" low="21.79994" />
+  <trade date="1/26/2014" time="05:01:00 AM" start="21.799999" end="21.8" high="21.8" low="21.79981" />
+  <trade date="1/26/2014" time="05:03:00 AM" start="21.8" end="21.79998" high="21.8" low="21.79998" />
+  <trade date="1/26/2014" time="05:05:00 AM" start="21.79996" end="21.79998" high="21.8" low="21.706611" />
+  <trade date="1/26/2014" time="05:07:00 AM" start="21.8" end="21.944076" high="21.94437" low="21.71002" />
+  <trade date="1/26/2014" time="05:09:00 AM" start="21.929999" end="21.8948" high="21.929999" low="21.73" />
+  <trade date="1/26/2014" time="05:11:00 AM" start="21.85" end="21.75" high="21.85" low="21.75" />
+  <trade date="1/26/2014" time="05:13:00 AM" start="21.75" end="21.75" high="21.75" low="21.75" />
+  <trade date="1/26/2014" time="05:15:00 AM" start="21.75" end="21.749999" high="21.75" low="21.749999" />
+  <trade date="1/26/2014" time="05:17:00 AM" start="21.749999" end="21.73" high="21.75" low="21.73" />
+  <trade date="1/26/2014" time="05:19:00 AM" start="21.73" end="21.75" high="21.75" low="21.73" />
+  <trade date="1/26/2014" time="05:21:00 AM" start="21.75" end="21.75" high="21.75" low="21.75" />
+  <trade date="1/26/2014" time="05:23:00 AM" start="21.75" end="21.75" high="21.75" low="21.7" />
+  <trade date="1/26/2014" time="05:25:00 AM" start="21.75" end="21.839" high="21.839" low="21.7" />
+  <trade date="1/26/2014" time="05:27:00 AM" start="21.839" end="21.819988" high="21.839" low="21.8" />
+  <trade date="1/26/2014" time="05:29:00 AM" start="21.819988" end="21.819898" high="21.819988" low="21.819898" />
+  <trade date="1/26/2014" time="05:31:00 AM" start="21.819898" end="21.81989" high="21.819898" low="21.8" />
+  <trade date="1/26/2014" time="05:33:00 AM" start="21.81989" end="21.81989" high="21.81989" low="21.819889" />
+  <trade date="1/26/2014" time="05:35:00 AM" start="21.81989" end="21.81" high="21.819899" low="21.81" />
+  <trade date="1/26/2014" time="05:37:00 AM" start="21.81" end="21.73771" high="21.81" low="21.733" />
+  <trade date="1/26/2014" time="05:39:00 AM" start="21.73767" end="21.75" high="21.75" low="21.73743" />
+</trades>
